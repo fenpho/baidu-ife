@@ -1,4 +1,4 @@
-# baidu_ife
+# 百度前端技术学院
 
 ### 仓库地址：https://github.com/fenpho/baidu_ife
 
