@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style type="text/css">
+    h1 {
+      /* 设置了字的大小，px是单位，你可以尝试改成其它大小 */
+      font-size: 30px;
+    }
+
+    p {
+      /* 设置了字的颜色，你可以尝试改成yellow */
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>你可以在这里修改一些文字作为标题</h1>
+  <img src="http://ife.baidu.com/2016/static/img/logo_c9785ff2.png">
+  <p>这里是正文部分，可以在HTML中修改内容</p>
+  <button id="btn">点按钮，打个招呼吧</button>
+
+  <script type="text/javascript">
+    document.getElementById("btn").onclick = function () {
+      // 点按钮后弹出一个文字，你可以尝试改变文字内容
+      alert("你好啊，欢迎来到百度前端技术学院");
+    }
+  </script>
+</body>
+
+</html>
