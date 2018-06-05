@@ -1,0 +1,54 @@
+html {
+    color: #666;
+    font-size: 10px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+    color: #333;
+}
+
+h1 {
+    font-size: 2.2rem;
+    letter-spacing: 1em;
+    text-shadow: 3px -2px 0px #ccc;
+}
+
+h2 {
+    font-size: 1.8rem;
+}
+
+h3 {
+    font-size: 1.6rem;
+}
+
+address h2 {
+    font-style: normal;
+}
+
+p,
+li,
+dt,
+dd {
+    text-indent: 2em;
+    text-align: left;
+    font-size: 1.4rem;
+    color: #888;
+    line-height: 2.8rem;
+}
+
+header,
+main,
+footer {
+    padding: 1rem 3rem;
+}
+
+.key-text {
+    font-size: 1.4rem;
+    font-weight: bold;
+    font-style: normal;
+    color: #666;
+    text-decoration: none;
+}
