@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <header>
+    <h1>简历</h1>
+    <address>
+      <h2>联系方式</h2>
+      <p><spam class="key-text">手机：</spam>188 xxxx xxxx</p> 
+      <p><span class="key-text">Email：</span><a href="#" target="_blank">myemail@xx.com</a></p> 
+    </address>
+    <section>
+      <h2>个人信息</h2>
+      <P><b>紫月凌枫</b> /男/未知<img src="https://avatars3.githubusercontent.com/u/23012827?s=40&v=4" alt="头像"></P>
+      <p><span class="key-text">学历：</span>本科/某某大学</p>
+      <p><span class="key-text">工作年限：</span>1年</p>
+      <p><span class="key-text">期望城市：</span>厦门</p>
+      <p><span class="key-text">期望职位：</span>前端开发</p>
+      <p><span class="key-text">Github：</span><a href="https://github.com/fenpho" target="_blank"><cite>https://github.com/fenpho</cite></a></p>
+      <p><span class="key-text">技术博客：</span><a href="https://fenpho.github.io" target="_blank"><cite>https://fenpho.github.io</cite></p></a>
+    </section>
+  </header>
+  <main>
+    <section>
+      <h2>工作经历</h2>
+      <div>
+        <h3>xx数据科技有限公司</h3> （<time> 2017年7月</time> ~ 至今 ）
+        <dl>
+          <dt>
+            <a class="key-text" href="#" target="_blank">xx项目</a>
+          </dt>
+          <dd><p>我在此项目负责前端开发，该项目采用Vue.js + Vuex + Axios搭建，以<em>前后端分离</em>的形式进行。</p><p>接口认证采用的是sessionid形式，项目开始本想通过vuex做登录状态管理，但是需求是能保持7天登录状态，所以改为通过localStorage存储登录状态并记录登录时间，有效登录时间为7天，过期或接口认证失效将自动跳转到登录页。</p><p>这个项目中，我借助阿里云移动测试平台，将网页的首屏渲染时间从3.58s降到1.6s，加上在不影响用户体验的情况下的图片压缩和启用gzip压缩代码，成功将网站评分从原来的88分提高到95分，带给了用户更好的访问体验。</p>
+          </dd>
+          <dt>
+            <a class="key-text" href="#" target="_blank">xxxx后台管理系统项目</a>
+          </dt>
+          <dd><p>我在此项目负责前端技术的选型和开发，该项目是PC端后台管理系统，服务于上市公司xx科技，主要用于管理商品和进行一些需要权限的操作，兼容IE9+，技术栈：ES6 + Vue.js + Element UI + webpack+ router + Axios + babel。</p><p>该项目采用token形式进行登录和权限校验，利用Axios的请求拦截，在每个请求头中添加token字段，完成权限认证。</p><p>这个项目中，最困难的地方是子组件与父组件之间的通信，由于Vue的数据单项流动现在，子组件可以通过props属性获取父组件参数，但不能直接修改父组件数据，故我采取$emit的形式派发事件给父组件，同时传递参数，让父组件修改自身数据。</p><p>这个项目中，组件化开发的到了彻底的执行，将导航栏，商品列表，上传图片和文字等等封装成立一个个单独的组件，极大的提高了开发的效率，进一步丰富了公司的组件库。</p></dd>
+        </dl>
+      </div>
+      <div>
+        <h3>xx科技有限公司</h3> （ <time>2017年2月</time> ~ <time>2017年5月</time> 实习）
+        <dt>
+          <a class="key-text" href="#" target="_blank">xx项目</a>
+        </dt>
+        <dd><p>我在此项目负责了前端页面布局和动画交互，引用jQuery操作DOM和编写动画，有 PC 和 移动端两个版本，便于不同需求的用户访问。</p></dd>
+        <dt>
+          <a class="key-text" href="#" target="_blank">xx项目</a>
+        </dt>
+        <dd><p>xx项目是xx科技的核心，里面汇集了大量的模板网站，我只负责其中一个模板网站的开发。</p><p>这个项目中运用了大量的CSS3的新特性，如利用transform的translateZ进行文字的入场动画，利用CSS3的transform:scale()属性，结合CSS3的transition过渡属性实现鼠标移上去时的放大效果。</p></dd>
+      </div>
+    </section>
+    <section>
+      <h2>开源项目和作品</h2>
+      <div>
+        <h3>开源项目</h3>
+        <dl>
+          <dt>
+            <a class="key-text" href="https://github.com/fenpho/front-end-learning" target="_blank">front-end-learning</a>
+          </dt>
+          <dd><p>自学前端期间写的代码合集</p></dd>
+          <dt>
+            <a class="key-text" href="https://fenpho.github.io/works/resume" target="_blank">我的GitHub作品页</a>
+          </dt>
+          <dd><p>业余时间开发的一些<em>小作品</em>集合页面，使用xmind进行产品需求分析，墨刀进行产品原型设计 ，根据原型图完成代码开发，利用media属性添加响应式，适配移动端浏览，最后托管到 GitHub 上面</p></dd>
+        </dl>
+
+        <h3>技术文章</h3>
+        <ul>
+          <li>
+            <a class="key-text" href="https://www.jianshu.com/p/f393bdd3b03d" target="_blank">Vue状态管理之Vuex</a>
+          </li>
+          <li>
+            <a class="key-text" href="https://www.jianshu.com/p/282717c8da6c" target="_blank">使用hexo搭建个人博客并部署到GitHub</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <h2>技能清单</h2>
+      <ol>
+        <Li>熟悉<abbr title="Hypertext Markup Language">HTML</abbr>/<abbr title="Hypertext Markup Language 5">HTML 5</abbr>，<abbr title="Cascading Style Sheets">CSS</abbr>/<abbr title="Cascading Style Sheets 3">CSS 3</abbr>，对<abbr title="Hypertext Markup Language">HTML</abbr>标签的语义化，Web标准有一定理解。</Li>
+        <Li>熟悉JavaScript，能用<abbr title="JavaScript">JS</abbr>实现常见页面效果。</Li>
+        <Li>熟悉主流前端框架Vue.js、React.js，了解Angula.js。</Li>
+        <Li>掌握<abbr title="Asynchronous Javascript And XML">Ajax</abbr>、<abbr title="JavaScript Object Notation">JSON</abbr>，熟悉jQuery和Bootstrap等前端框架。</Li>
+        <Li>熟练使用版本控制工具git，打包工具webpack。 </Li>
+        <Li>熟悉<abbr title="Cascading Style Sheets">CSS</abbr>预编译工具Sass，了解Node.js。 </Li>
+        <li>热爱前端，喜欢用最扎实的代码技术做出效果上最炫，代码上最合理的页面。</li>
+      </ol>
+    </section>
+  </main>
+  <footer>
+    <section class="thanks">
+      <h2>致谢</h2>
+      <p>感谢您花时间阅读我的简历，期待能有机会和您共事。</p>
+    </section>
+  </footer>
+</body>
+
+</html>
