@@ -112,6 +112,7 @@ header nav a {
 main .info-box {
   width: 100%;
 }
+
 main .info-box .tab {
   height: 42px;
   border-bottom: 1px solid #E1E1E1;
@@ -127,16 +128,18 @@ main .info-box .tab li {
   float: left;
   height: 32px;
   list-style-type: none;
-  width: 64px;
   margin-top: 10px;
 }
 
+main .info-box li a:link,
+main .info-box li a:visited,
 main .info-box li a {
   display: inline-block;
   text-decoration: none;
-  width: 100%;
   height: 100%;
+  padding: 0 20px;
   line-height: 3;
+  color: #333;
   background-color: #eee;
   text-align: center;
   border-top-left-radius: 17px;
@@ -173,6 +176,7 @@ main .info-box article .row ul {
   display: flex;
   flex-wrap: wrap;
 }
+
 main .info-box article ul li {
   flex: 1;
   padding: 80px;
@@ -182,6 +186,7 @@ main .info-box article ul li {
   border: 1px solid #DADADA;
   text-align: center;
 }
+
 main .info-box article ul li:last-child {
   margin-right: 0;
 }
