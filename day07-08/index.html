@@ -2,74 +2,253 @@
 <html lang="zh-CN">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>学习布局</title>
-    <link rel="stylesheet" href="./index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>静态页面布局</title>
+  <link rel="stylesheet" href="./index.css">
 </head>
 
 <body>
-    <main>
-        <!-- flex布局 -->
-        <!-- 左侧30%，右侧70% -->
-        <h3>flex布局--左侧30%，右侧70%</h3>
-        <section class="flex-1">
-            <article class="aside">我是左边的盒子，拥有30%的宽度</article>
-            <article class="content">我是右边的盒子，拥有70%的宽度</article>
-        </section>
-        <!-- 左侧固定宽度：200px，右侧自适应 -->
-        <h3>flex布局--左侧固定宽度：200px，右侧自适应</h3>
-        <section class="flex-2">
-            <article class="aside">我是左边的盒子，拥有200px的宽度</article>
-            <article class="content">我是右边的盒子，我能自适应</article>
-        </section>
-        <!-- 左侧自适应，右侧固定宽度：200px -->
-        <h3>flex布局--左侧自适应，右侧固定宽度：200px</h3>
-        <section class="flex-3">
-            <article class="content">我是左边的盒子，我能自适应</article>
-            <article class="aside">我是右边的盒子，拥有200px的宽度</article>
-        </section>
+  <header>
+    <section class="wrap">
+      <div class="logo">Logo</div>
+      <nav>
+        <ul>
+          <li>
+            <a href="#">Github</a>
+          </li>
+          <li>
+            <a href="#">Register</a>
+          </li>
+          <li>
+            <a href="#">Login</a>
+          </li>
+        </ul>
+      </nav>
+    </section>
+  </header>
+  <section class="carousel">
+    <div class="pic-area">
+      <ul>
+        <li>
+          <a href="#">
+            <img src="" alt="">
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="" alt="">
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="" alt="">
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="" alt="">
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="wrap pic-page">
+      <ul>
+        <li>1</li>
+        <li class="active">2</li>
+        <li>3</li>
+        <li>4</li>
+      </ul>
+    </div>
+  </section>
+  <main>
+    <section class="info-box">
+      <div class="tab">
+        <ul class="wrap">
+          <li>
+            <a href="#" class="active">Tab 1</a>
+          </li>
+          <li>
+            <a href="#">Tab 2</a>
+          </li>
+          <li>
+            <a href="#">Tab 3</a>
+          </li>
+        </ul>
+      </div>
+      <div class="panels wrap">
+        <article class="active-panel">
+          <div class="row">
+            <ul>
+              <li>
+                <div>This is Content 1</div>
+              </li>
+              <li>
+                <div>Maybe Content 2</div>
+              </li>
+              <li>
+                <div>Content 3</div>
+              </li>
+            </ul>
+          </div>
+          <div class="row">
+            <ul>
+              <li>
+                <div>Content 4</div>
+              </li>
+              <li>
+                <div>Content 5</div>
+              </li>
+              <li>
+                <div>Content 6</div>
+              </li>
+              <li>
+                <div>Content 7</div>
+              </li>
+            </ul>
+          </div>
+          <div class="row">
+            <ul>
+              <li>
+                <div>Content 8</div>
+              </li>
+              <li>
+                <div>Content 9</div>
+              </li>
+              <li>
+                <div>Content 10</div>
+              </li>
+            </ul>
+          </div>
+        </article>
+        <article>
+          <h2>The second tab</h2>
+          <div class="row">
+              <ul>
+                <li>
+                  <div>This is Content 1</div>
+                </li>
+                <li>
+                  <div>Maybe Content 2</div>
+                </li>
+                <li>
+                  <div>Content 3</div>
+                </li>
+              </ul>
+            </div>
+            <div class="row">
+              <ul>
+                <li>
+                  <div>Content 4</div>
+                </li>
+                <li>
+                  <div>Content 5</div>
+                </li>
+                <li>
+                  <div>Content 6</div>
+                </li>
+                <li>
+                  <div>Content 7</div>
+                </li>
+              </ul>
+            </div>
+            <div class="row">
+              <ul>
+                <li>
+                  <div>Content 8</div>
+                </li>
+                <li>
+                  <div>Content 9</div>
+                </li>
+                <li>
+                  <div>Content 10</div>
+                </li>
+              </ul>
+            </div>
+        </article>
+        <article>
+          <h2>The third tab</h2>
+          <div class="row">
+              <ul>
+                <li>
+                  <div>This is Content 1</div>
+                </li>
+                <li>
+                  <div>Maybe Content 2</div>
+                </li>
+                <li>
+                  <div>Content 3</div>
+                </li>
+              </ul>
+            </div>
+            <div class="row">
+              <ul>
+                <li>
+                  <div>Content 4</div>
+                </li>
+                <li>
+                  <div>Content 5</div>
+                </li>
+                <li>
+                  <div>Content 6</div>
+                </li>
+                <li>
+                  <div>Content 7</div>
+                </li>
+              </ul>
+            </div>
+            <div class="row">
+              <ul>
+                <li>
+                  <div>Content 8</div>
+                </li>
+                <li>
+                  <div>Content 9</div>
+                </li>
+                <li>
+                  <div>Content 10</div>
+                </li>
+              </ul>
+            </div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <section class="wrap copyright">
+      &copy; 2018 ife.baidu.com
+    </section>
+  </footer>
+  <script>
+    var tabs = document.querySelectorAll('.info-box li a');
+    var panels = document.querySelectorAll('.info-box article');
 
-        <!-- 双inline-block布局 -->
-        <!-- 左侧30%，右侧70% -->
-        <h3>双inline-block布局--左侧30%，右侧70%</h3>
-        <section class="inline-block-1">
-            <article class="aside">我是左边的盒子，拥有30%的宽度</article>
-            <article class="content">我是右边的盒子，拥有70%的宽度</article>
-        </section>
-        <!-- 左侧固定宽度：200px，右侧自适应 -->
-        <h3>双inline-block布局--左侧固定宽度：200px，右侧自适应</h3>
-        <section class="inline-block-2">
-            <article class="aside">我是左边的盒子，拥有200px的宽度</article>
-            <article class="content">我是右边的盒子，我能自适应</article>
-        </section>
-        <!-- 左侧自适应，右侧固定宽度：200px -->
-        <h3>双inline-block布局--左侧自适应，右侧固定宽度：200px</h3>
-        <section class="inline-block-3">
-            <article class="content">我是左边的盒子，我能自适应</article>
-            <article class="aside">我是右边的盒子，拥有200px的宽度</article>
-        </section>
-        <!-- 双float布局 -->
-        <!-- 左侧30%，右侧70% -->
-        <h3>双float布局--左侧30%，右侧70%</h3>
-        <section class="inline-block-1">
-            <article class="aside">我是左边的盒子，拥有30%的宽度</article>
-            <article class="content">我是右边的盒子，拥有70%的宽度</article>
-        </section>
-        <!-- 左侧固定宽度：200px，右侧自适应 -->
-        <h3>双float--左侧固定宽度：200px，右侧自适应</h3>
-        <section class="inline-block-2">
-            <article class="aside">我是左边的盒子，拥有200px的宽度</article>
-            <article class="content">我是右边的盒子，我能自适应</article>
-        </section>
-        <!-- 左侧自适应，右侧固定宽度：200px -->
-        <h3>双float--左侧自适应，右侧固定宽度：200px</h3>
-        <section class="inline-block-3">
-            <article class="content">我是左边的盒子，我能自适应</article>
-            <article class="aside">我是右边的盒子，拥有200px的宽度</article>
-        </section>
-    </main>
+    for (i = 0; i < tabs.length; i++) {
+      var tab = tabs[i];
+      setTabHandler(tab, i);
+    }
+
+    function setTabHandler(tab, tabPos) {
+      tab.onclick = function () {
+        for (i = 0; i < tabs.length; i++) {
+          if (tabs[i].getAttribute('class')) {
+            tabs[i].removeAttribute('class');
+          }
+        }
+
+        tab.setAttribute('class', 'active');
+
+        for (i = 0; i < panels.length; i++) {
+          if (panels[i].getAttribute('class')) {
+            panels[i].removeAttribute('class');
+          }
+        }
+
+        panels[tabPos].setAttribute('class', 'active-panel');
+      }
+    }
+  </script>
 </body>
 
 </html>

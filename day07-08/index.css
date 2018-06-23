@@ -1,150 +1,199 @@
-html,
-body,
-main {
-    height: 100%;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-section {
-    margin-bottom: 20px;
+html {
+  line-height: 1.5;
+  font-size: 14px;
+  font-family: "Open Sans", arial, x-locale-body, sans-serif;
 }
 
-.flex-1 {
-    display: flex;
-    height: 200px;
-    padding: 20px;
-    border: 1px solid #ccc;
+body {
+  min-width: 960px;
+  overflow-x: auto;
 }
 
-.flex-1 .aside {
-    flex: 3;
-    height: 100%;
-    background-color: green;
-    margin-right: 20px;
+header {
+  width: 100%;
+  height: 48px;
+  background-color: #333;
 }
 
-.flex-1 .content {
-    flex: 7;
-    height: 100%;
-    background-color: yellow;
+.wrap {
+  width: 960px;
+  margin: 0 auto;
 }
 
-.flex-2 {
-    display: flex;
-    flex-flow: wrap;
-    height: 200px;
-    padding: 20px;
-    border: 1px solid #ccc;
+header .logo {
+  float: left;
+  height: 48px;
+  font-size: 16px;
+  line-height: 48px;
+  color: #fff;
 }
 
-.flex-2 .aside {
-    width: 200px;
-    height: 100%;
-    background-color: green;
-    margin-right: 20px;
+header nav {
+  float: right;
 }
 
-.flex-2 .content {
-    flex: 1;
-    height: 100%;
-    background-color: yellow;
+header nav li {
+  float: left;
+  list-style: none;
 }
 
-.flex-3 {
-    display: flex;
-    flex-flow: wrap;
-    height: 200px;
-    padding: 20px;
-    border: 1px solid #ccc;
+header nav a {
+  display: block;
+  width: 100%;
+  height: 48px;
+  color: #fff;
+  margin: 10px;
+  line-height: 20px;
 }
 
-.flex-3 .aside {
-    width: 200px;
-    height: 100%;
-    background-color: yellow;
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 170px;
 }
 
-.flex-3 .content {
-    flex: 1;
-    height: 100%;
-    margin-right: 20px;
-    background-color: green;
+.carousel .pic-area {
+  width: 100%;
+  height: 100%;
 }
 
-.inline-block-1 {
-    /* 消除空格的影响 */
-    font-size: 0;
-    height: 200px;
-    padding: 20px;
-    border: 1px solid #ccc;
+.carousel .pic-area li {
+  position: absolute;
+  left: 0;
+  ;
+  top: 0;
+  width: 100%;
+  list-style: none;
 }
 
-.inline-block-1 .aside,
-.inline-block-1 .content {
-    display: inline-block;
-    height: 100%;
-    width: 30%;
-    /* 顶端对齐 */
-    vertical-align: top;
-    font-size: 14px;
-    box-sizing: border-box;
-    background-color: green;
-    margin-right: 20px;
+.carousel .pic-area li a {
+  display: block;
+  width: 100%;
 }
 
-.inline-block-1 .content {
-    width: calc(70% - 20px);
-    margin-right: 0;
-    background-color: yellow;
-}
-.inline-block-2 {
-    /* 消除空格的影响 */
-    font-size: 0;
-    height: 200px;
-    padding: 20px;
-    border: 1px solid #ccc;
+.carousel .pic-area li a img {
+  display: block;
+  width: 100%;
+  height: 170px;
+  background-color: #66BB33;
 }
 
-.inline-block-2 .aside,
-.inline-block-2 .content {
-    display: inline-block;
-    height: 100%;
-    width: 200px;
-    /* 顶端对齐 */
-    vertical-align: top;
-    font-size: 14px;
-    box-sizing: border-box;
-    background-color: green;
-    margin-right: 20px;
+.carousel .pic-page {
+  position: relative;
 }
 
-.inline-block-2 .content {
-    width: calc(100% - 220px);
-    margin-right: 0;
-    background-color: yellow;
-}
-.inline-block-3 {
-    /* 消除空格的影响 */
-    font-size: 0;
-    height: 200px;
-    padding: 20px;
-    border: 1px solid #ccc;
+.carousel .pic-page ul {
+  position: absolute;
+  right: 0;
+  bottom: 20px;
 }
 
-.inline-block-3 .aside,
-.inline-block-3 .content {
-    display: inline-block;
-    height: 100%;
-    width: calc(100% - 220px);
-    /* 顶端对齐 */
-    vertical-align: top;
-    font-size: 14px;
-    box-sizing: border-box;
-    background-color: green;
-    margin-right: 20px;
+.carousel .pic-page ul li {
+  display: inline-block;
+  list-style: none;
+  padding: 2px 5px;
+  text-align: center;
+  background-color: #B2DD99;
+  margin-right: 6px;
+  vertical-align: bottom;
 }
 
-.inline-block-3 .aside {
-    width: 200px;
-    margin-right: 0;
-    background-color: yellow;
+.carousel .pic-page ul li.active {
+  background-color: #E0F1D6;
+  padding-top: 15px;
+}
+
+main .info-box {
+  width: 100%;
+}
+main .info-box .tab {
+  height: 42px;
+  border-bottom: 1px solid #E1E1E1;
+  margin-bottom: 5px;
+}
+
+main .info-box ul {
+  padding-left: 0;
+  margin-top: 0;
+}
+
+main .info-box .tab li {
+  float: left;
+  height: 32px;
+  list-style-type: none;
+  width: 64px;
+  margin-top: 10px;
+}
+
+main .info-box li a {
+  display: inline-block;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  line-height: 3;
+  background-color: #eee;
+  text-align: center;
+  border-top-left-radius: 17px;
+  border-top-right-radius: 17px;
+  border: 1px solid #E1E1E1;
+  outline: none;
+}
+
+main .info-box li a:active,
+main .info-box li a:focus,
+main .info-box li a:hover {
+  color: #333;
+  background-color: #fff;
+}
+
+main .info-box li a.active {
+  color: #333;
+  background-color: #fff;
+  border-bottom-color: #fff;
+}
+
+main .info-box .panels {
+  position: relative;
+  clear: both;
+}
+
+main .info-box article {
+  width: 100%;
+  background-color: #fff;
+  display: none;
+}
+
+main .info-box article .row ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+main .info-box article ul li {
+  flex: 1;
+  padding: 80px;
+  list-style-type: none;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #DADADA;
+  text-align: center;
+}
+main .info-box article ul li:last-child {
+  margin-right: 0;
+}
+
+main .info-box .active-panel {
+  display: block;
+}
+
+footer {
+  height: 68px;
+  padding-top: 10px;
+  text-align: center;
+  color: #fff;
+  background-color: #666;
 }
