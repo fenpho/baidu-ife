@@ -5,25 +5,25 @@
 }
 html {
   color: #d1d0cf;
-  min-width: 980px;
+  min-width: 1600px;
 }
 .wrap {
   width: 980px;
   margin: 0 auto;
+}
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.65);
 }
 header {
   position: relative;
   width: 100%;
   height: 990px;
   background: url(images/banner1.png) left top no-repeat;
-}
-header .mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, .65);
 }
 header .wrap {
   position: absolute;
@@ -35,14 +35,15 @@ header .wrap {
   height: 100%;
   padding: 0 5px;
 }
-header .wrap>.title {
-  padding-top: 160px;
+header .wrap > .title {
+  padding-top: 194px;
   font-size: 62px;
+  line-height: 72px;
   color: #fff;
   text-align: center;
 }
 header p {
-  margin: 80px auto 100px;
+  margin: 72px auto 98px;
   padding: 0 100px;
   font-size: 20px;
   line-height: 32px;
@@ -93,20 +94,23 @@ header .info button {
 }
 
 .feature {
-  padding: 80px 0;
+  padding: 84px 0 20px 0;
   text-align: center;
   color: #141414;
+}
+.feature .wrap {
+  width: 1080px;
 }
 .feature .tag {
   font-size: 14px;
   line-height: 28px;
 }
-.feature>.title {
+.feature > .title {
   width: 710px;
   margin: 0 auto;
   margin-top: 13px;
-  font-size: 32px;
-  line-height: 42px;
+  font-size: 42px;
+  line-height: 52px;
 }
 .feature .list {
   display: flex;
@@ -138,4 +142,180 @@ header .info button {
 .feature .list .descript {
   font-size: 16px;
   line-height: 26px;
+}
+.support {
+  position: relative;
+  width: 100%;
+  height: 800px;
+  padding: 100px 0;
+  background: url(images/banner2.png) left top no-repeat;
+}
+.support .wrap {
+  position: absolute;
+  right: 780px;
+  width: 510px;
+  z-index: 1;
+}
+.support img {
+  position: absolute;
+  right: 0;
+  width: 645px;
+  height: 600px;
+  z-index: 1;
+}
+.support .wrap > .title {
+  width: 340px;
+  margin: 50px 0 70px 0;
+  color: #fff;
+  font-size: 42px;
+  line-height: 52px;
+}
+.support .wrap .descript {
+  width: 370px;
+  font-size: 18px;
+  line-height: 28px;
+}
+.support .wrap button {
+  width: 235px;
+  height: 60px;
+  margin-top: 55px;
+  margin-right: 30px;
+  font-size: 12px;
+  color: #141414;
+  border-radius: 2px;
+  border: 1px solid #55524e;
+}
+.support .wrap button:last-child {
+  background-color: transparent;
+  margin-right: 0;
+}
+.product {
+  text-align: center;
+  color: #141414;
+  border-bottom: 1px solid #55524e;
+}
+.product .wrap {
+  padding: 95px 10px;
+}
+.product .wrap .list {
+  display: flex;
+}
+.product .item {
+  list-style: none;
+  width: 270px;
+  margin: 0 40px;
+}
+.product .wrap > .title {
+  margin: 0px 0 80px 0;
+  font-size: 42px;
+  line-height: 52px;
+}
+.product .wrap .descript {
+  font-size: 16px;
+  line-height: 26px;
+}
+.course {
+  color: #141414;
+  border-bottom: 1px solid #55524e;
+}
+.course .wrap {
+  padding: 110px 5px;
+}
+.course .wrap .item {
+  list-style: none;
+  margin-bottom: 80px;
+  overflow: hidden;
+}
+.course .wrap .item:last-child {
+  margin-bottom: 0;
+}
+.course .item .title {
+  font-size: 20px;
+  line-height: 32px;
+  padding-top: 42px;
+  margin-bottom: 20px;
+}
+.course .item:nth-child(2n + 1) img {
+  float: left;
+  margin-right: 100px;
+}
+.course .item:nth-child(2n) img {
+  float: right;
+  margin-left: 100px;
+}
+.course .item .descript {
+  font-size: 16px;
+  line-height: 28px;
+}
+.teacther {
+  text-align: center;
+  border-bottom: 1px solid #55524e;
+}
+.teacther .wrap {
+  padding: 100px 5px;
+}
+.teacther .wrap > .title {
+  font-size: 42px;
+  line-height: 52px;
+  color: #141414;
+  margin-bottom: 25px;
+}
+.teacther .wrap > .descript {
+  margin-bottom: 63px;
+  padding: 0 50px;
+  font-size: 18px;
+  line-height: 28px;
+  color: #141414;
+}
+.teacther .wrap .list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.teacther .wrap .list>.item {
+  list-style: none;
+  width: 470px;
+  margin-right: 30px;
+  margin-bottom: 30px;
+  position: relative;
+}
+.teacther .wrap .item:nth-child(2n) {
+  margin-right: 0;
+}
+.teacther .wrap .list>.item:hover .info {
+  opacity: 1;
+}
+.teacther .list .info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 110px;
+  background-color: rgba(0, 0, 0, 0.65);
+  opacity: 0;
+  transition: opacity .5s;
+}
+
+.teacther .list .name {
+  font-size: 20px;
+  line-height: 32px;
+  color: #fff;
+  z-index: 1;
+}
+.teacther .list .descript {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 28px;
+  color: #fff;
+  z-index: 1;
+}
+.teacther .list .sociate {
+  display: flex;
+  width: 210px;
+  margin: 28px auto;
+  justify-content: space-between;
+}
+.teacther .sociate .item {
+  flex: 1;
+  list-style: none;
 }
