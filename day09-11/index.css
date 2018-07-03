@@ -5,7 +5,7 @@
 }
 html {
   color: #d1d0cf;
-  min-width: 1600px;
+  min-width: 1349px;
 }
 .wrap {
   width: 980px;
@@ -24,6 +24,7 @@ header {
   width: 100%;
   height: 990px;
   background: url(images/banner1.png) left top no-repeat;
+  background-size: cover;
 }
 header .wrap {
   position: absolute;
@@ -51,7 +52,7 @@ header p {
 }
 header form {
   padding: 50px 100px;
-  border: 1px solid #55524e;
+  border: 1px solid #595652;
   text-align: center;
 }
 
@@ -80,7 +81,7 @@ header .info input {
   color: #fff;
   background-color: transparent;
   outline: none;
-  border: 1px solid #55524e;
+  border: 1px solid #676b68;
 }
 header .info button {
   float: right;
@@ -149,6 +150,7 @@ header .info button {
   height: 800px;
   padding: 100px 0;
   background: url(images/banner2.png) left top no-repeat;
+  background-size: cover;
 }
 .support .wrap {
   position: absolute;
@@ -183,16 +185,18 @@ header .info button {
   font-size: 12px;
   color: #141414;
   border-radius: 2px;
-  border: 1px solid #55524e;
+  border: 1px solid #676b68;
+  outline: none;
 }
 .support .wrap button:last-child {
   background-color: transparent;
   margin-right: 0;
+  color: #fff;
 }
 .product {
   text-align: center;
   color: #141414;
-  border-bottom: 1px solid #55524e;
+  border-bottom: 1px solid #e7e7e7;
 }
 .product .wrap {
   padding: 95px 10px;
@@ -216,7 +220,7 @@ header .info button {
 }
 .course {
   color: #141414;
-  border-bottom: 1px solid #55524e;
+  border-bottom: 1px solid #e7e7e7;
 }
 .course .wrap {
   padding: 110px 5px;
@@ -249,7 +253,7 @@ header .info button {
 }
 .teacther {
   text-align: center;
-  border-bottom: 1px solid #55524e;
+  border-bottom: 1px solid #e7e7e7;
 }
 .teacther .wrap {
   padding: 100px 5px;
@@ -271,7 +275,7 @@ header .info button {
   display: flex;
   flex-wrap: wrap;
 }
-.teacther .wrap .list>.item {
+.teacther .wrap .list > .item {
   list-style: none;
   width: 470px;
   margin-right: 30px;
@@ -281,7 +285,7 @@ header .info button {
 .teacther .wrap .item:nth-child(2n) {
   margin-right: 0;
 }
-.teacther .wrap .list>.item:hover .info {
+.teacther .wrap .list > .item:hover .info {
   opacity: 1;
 }
 .teacther .list .info {
@@ -293,7 +297,7 @@ header .info button {
   padding-top: 110px;
   background-color: rgba(0, 0, 0, 0.65);
   opacity: 0;
-  transition: opacity .5s;
+  transition: opacity 0.5s;
 }
 
 .teacther .list .name {
@@ -318,4 +322,118 @@ header .info button {
 .teacther .sociate .item {
   flex: 1;
   list-style: none;
+}
+.contact {
+  color: #141414;
+  height: 700px;
+  overflow: hidden;
+}
+.contact .wrap {
+  padding: 70px 5px;
+}
+.contact .wrap form {
+  float: left;
+  width: 470px;
+  height: 560px;
+  padding: 58px 50px;
+  border: 1px solid #e7e7e7;
+  text-align: center;
+  border-radius: 14px;
+}
+.contact form .title {
+  font-size: 16px;
+  line-height: 32px;
+  margin-bottom: 25px;
+}
+.contact form input,
+.contact form textarea {
+  width: 370px;
+  height: 50px;
+  margin: 15px auto;
+  padding-left: 20px;
+  border: 1px solid #e7e7e7;
+  font-size: 14px;
+  line-height: 26px;
+  border-radius: 3px;
+  outline: none;
+}
+.contact form textarea {
+  height: 145px;
+}
+.contact form button {
+  width: 370px;
+  height: 50px;
+  margin-top: 15px;
+  font-size: 12px;
+  color: #fff;
+  background-color: #141414;
+  border-radius: 2px;
+  outline: none;
+  border: none;
+}
+.contact .wrap article {
+  float: right;
+  width: 360px;
+}
+.contact article .title {
+  font-size: 42px;
+  line-height: 52px;
+  margin-bottom: 30px;
+}
+.contact article .descript {
+  font-size: 16px;
+  line-height: 26px;
+  margin-bottom: 40px;
+}
+.contact .way li {
+  list-style: none;
+  width: 100%;
+  font-size: 16px;
+  line-height: 26px;
+  margin-bottom: 28px;
+  padding-left: 40px;
+  background: url(images/map.png) no-repeat left center;
+}
+.contact .way li:nth-child(2) {
+  background-image: url(images/phone.png);
+}
+.contact .way li:nth-child(3) {
+  background-image: url(images/mail.png);
+}
+footer {
+  width: 100%;
+  height: 410px;
+  background: #141414;
+}
+footer .link {
+  width: 1200px;
+  height: 100%;
+  padding: 90px 20px 120px;
+  display: flex;
+}
+footer .link dl {
+  flex: 1;
+}
+footer .link dt {
+  font-size: 16px;
+  line-height: 50px;
+  color: #fff;
+}
+footer .link dd {
+  font-size: 14px;
+  line-height: 50px;
+  color: #7a7a7a;
+}
+footer .enjoy dd {
+  line-height: 28px;
+}
+footer .link ul {
+  margin-top: 40px;
+}
+footer .link ul li {
+  float: left;
+  list-style: none;
+  width: 17px;
+  height: 17px;
+  margin-right: 25px;
 }
