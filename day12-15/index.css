@@ -1,0 +1,61 @@
+* {
+  box-sizing: border-box;
+}
+slide {
+  position: fixed;
+  display: flex;
+  left: 0;
+  top: 0;
+  width: 350px;
+  height: 100%;
+}
+main {
+  margin-left: 350px;
+}
+.button-group {
+  position: relative;
+  width: 100px;
+  height: 100%;
+  background-color: #1d2531;
+}
+.button-group .classify {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+}
+.button-group .classify li {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 20px;
+}
+.button-group .operation {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+}
+.button-group .operation ul {
+  display: flex;
+  padding: 0 6px;
+  justify-content: space-between
+}
+.button-group .operation li {
+  width: 16px;
+  height: 16px;
+}
+nav {
+  position: relative;
+  width: 250px;
+  height: 100%;
+  background-color: #222c3c;
+}
+nav .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px;
+}
