@@ -59,3 +59,30 @@ nav .content {
   width: 100%;
   padding: 30px;
 }
+nav .goal {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px;
+}
+nav .content dl {
+  vertical-align: top;
+}
+nav .content dt {
+  height: 40px;
+  line-height: 16px;
+  font-size: 16px;
+  color: #5b6779;
+}
+nav .content dt a {
+  float: right;
+}
+nav .content dd {
+  font-size: 14px;
+  line-height: 38px;
+}
+nav .content a {
+  color: #b7c0cd;
+  text-decoration: none;
+}
