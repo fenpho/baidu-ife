@@ -58,6 +58,8 @@ nav .content {
   left: 0;
   width: 100%;
   padding: 30px;
+  height: 85%;
+  overflow: hidden;
 }
 nav .goal {
   position: absolute;
@@ -65,12 +67,13 @@ nav .goal {
   left: 0;
   width: 100%;
   padding: 30px;
+  padding-bottom: 23px;
 }
 nav .content dl {
   vertical-align: top;
 }
 nav .content dt {
-  height: 40px;
+  height: 34px;
   line-height: 16px;
   font-size: 16px;
   color: #5b6779;
@@ -85,4 +88,38 @@ nav .content dd {
 nav .content a {
   color: #b7c0cd;
   text-decoration: none;
+}
+nav .content .last-child {
+  padding-bottom: 15px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid #2a3547;
+}
+nav .goal .month {
+  display: flex;
+  font-size: 14px;
+  margin-bottom: 13px;
+  color: #fff;
+  justify-content: space-between
+}
+nav .goal .progress {
+  position: relative;
+  height: 4px;
+}
+nav .progress .outer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 4px;
+  width: 100%;
+  background-color: #2d3848;
+  border-radius: 2px;
+}
+nav .progress .inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 4px;
+  width: 20%;
+  background-color: #8769e5;
+  border-radius: 2px;
 }
