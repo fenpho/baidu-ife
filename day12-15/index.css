@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
 }
+
 slide {
   position: fixed;
   display: flex;
@@ -9,15 +10,18 @@ slide {
   width: 350px;
   height: 100%;
 }
+
 main {
   margin-left: 350px;
 }
+
 .button-group {
   position: relative;
   width: 100px;
   height: 100%;
   background-color: #1d2531;
 }
+
 .button-group .classify {
   position: absolute;
   top: 0;
@@ -25,11 +29,13 @@ main {
   width: 100%;
   padding: 20px;
 }
+
 .button-group .classify li {
   width: 60px;
   height: 60px;
   margin-bottom: 20px;
 }
+
 .button-group .operation {
   position: absolute;
   bottom: 0;
@@ -37,21 +43,25 @@ main {
   width: 100%;
   padding: 20px;
 }
+
 .button-group .operation ul {
   display: flex;
   padding: 0 6px;
   justify-content: space-between
 }
+
 .button-group .operation li {
   width: 16px;
   height: 16px;
 }
+
 nav {
   position: relative;
   width: 250px;
   height: 100%;
   background-color: #222c3c;
 }
+
 nav .content {
   position: absolute;
   top: 0;
@@ -61,6 +71,7 @@ nav .content {
   height: 85%;
   overflow: hidden;
 }
+
 nav .goal {
   position: absolute;
   bottom: 0;
@@ -69,31 +80,38 @@ nav .goal {
   padding: 30px;
   padding-bottom: 23px;
 }
+
 nav .content dl {
   vertical-align: top;
 }
+
 nav .content dt {
   height: 34px;
   line-height: 16px;
   font-size: 16px;
   color: #5b6779;
 }
+
 nav .content dt a {
   float: right;
 }
+
 nav .content dd {
   font-size: 14px;
   line-height: 38px;
 }
+
 nav .content a {
   color: #b7c0cd;
   text-decoration: none;
 }
+
 nav .content .last-child {
   padding-bottom: 15px;
   margin-bottom: 28px;
   border-bottom: 1px solid #2a3547;
 }
+
 nav .goal .month {
   display: flex;
   font-size: 14px;
@@ -101,10 +119,12 @@ nav .goal .month {
   color: #fff;
   justify-content: space-between
 }
+
 nav .goal .progress {
   position: relative;
   height: 4px;
 }
+
 nav .progress .outer {
   position: absolute;
   left: 0;
@@ -114,6 +134,7 @@ nav .progress .outer {
   background-color: #2d3848;
   border-radius: 2px;
 }
+
 nav .progress .inner {
   position: absolute;
   left: 0;
@@ -123,6 +144,7 @@ nav .progress .inner {
   background-color: #8769e5;
   border-radius: 2px;
 }
+
 main header {
   position: sticky;
   top: 0;
@@ -133,22 +155,27 @@ main header {
   justify-content: space-between;
   background-color: #fff;
   border-bottom: 1px solid #e6e9ec;
+  z-index: 999;
 }
+
 main header .title {
   padding-left: 30px;
   font-size: 24px;
   line-height: 80px;
   color: #354052;
 }
+
 main header .user-info {
   position: relative;
   display: flex;
   padding: 17px 85px;
 }
+
 main .user-info .avatar {
   position: relative;
   margin-right: 15px;
 }
+
 main .avatar .status {
   position: absolute;
   bottom: 0;
@@ -159,6 +186,7 @@ main .avatar .status {
   background-color: #fff;
   border-radius: 50%;
 }
+
 main .avatar .status .online {
   display: block;
   width: 14px;
@@ -166,23 +194,220 @@ main .avatar .status .online {
   border: 3px solid #38a76a;
   border-radius: 50%;
 }
+
 main .user-info .info span {
   display: block;
 }
+
 main .user-info .name {
   font-size: 16px;
   line-height: 22px;
-  color: #2399f1;
+  color: #2399f2;
 }
+
 main .user-info .identity {
   font-size: 14px;
   line-height: 22px;
   color: #b5b5b5;
 }
+
 main .user-info button {
   position: absolute;
   right: 30px;
   top: 28px;
   border: none;
   background: transparent;
+}
+
+main .content {
+  display: flex;
+  color: #585d68;
+}
+
+.content .messages {
+  width: 400px;
+  height: 100%;
+  border-right: 1px solid #e6e9ec;
+}
+
+.content .messages .search {
+  text-align: center;
+  height: 70px;
+  padding-top: 17px;
+  border-bottom: 1px solid #e6e9ec;
+}
+
+.content .search input {
+  width: 90%;
+  height: 36px;
+  padding: 0 3%;
+  line-height: 36px;
+  border: 1px solid #e5e8ee;
+  border-radius: 5px;
+  background: url(images/search.png) 97% center no-repeat;
+  outline: none;
+}
+
+.content .messages .list li {
+  height: 130px;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e5e8ee;
+}
+
+.content .messages .list li.active {
+  border-left: 3px solid #2399f2;
+}
+
+.content .messages .list li.active .name {
+  color: #2399f2;
+  padding-left: 16px;
+}
+
+.content .messages .list li.active .name .point {
+  display: block;
+}
+
+.content .messages .list li.active .num {
+  display: block;
+}
+
+.content .messages .list li.active .body {
+  padding-right: 60px;
+}
+
+.content .messages li .head {
+  display: flex;
+  position: relative;
+}
+
+.content .messages li .head img {
+  margin-right: 20px;
+}
+
+.content .messages li .head .name {
+  position: relative;
+  display: block;
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 3px;
+}
+
+.content .messages li .head .name .point {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  display: none;
+  background-color: #2399f2;
+  border-radius: 50%;
+}
+
+.content .messages li .head .descript {
+  display: block;
+  font-size: 14px;
+  line-height: 20px;
+  color: #b5b5b5;
+}
+
+.content .messages li .head .time {
+  position: absolute;
+  right: 0;
+  top: 13px;
+  font-size: 14px;
+  color: #7f8fa4;
+}
+
+.content .messages li .body {
+  position: relative;
+  padding-top: 12px;
+  font-size: 14px;
+  line-height: 20px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.content .messages li .body .num {
+  position: absolute;
+  right: 0;
+  top: 22px;
+  display: none;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 14px;
+  background-color: #2399f2;
+}
+
+.news {
+  width: 100%;
+}
+
+.news .head {
+  display: flex;
+  width: 100%;
+  padding: 18px 20px 22px 30px;
+  height: 70px;
+  justify-content: space-between;
+  border-bottom: 1px solid #e6e9ec;
+}
+
+.news .head .name {
+  position: relative;
+  font-size: 18px;
+  padding-right: 20px;
+}
+
+.news .head .name .point {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  background-color: #28bd3f;
+  border-radius: 50%;
+}
+
+.news .head .operation {
+  display: flex;
+}
+.news .head ul {
+  display: flex;
+  height: 32px;
+  border: 1px solid #ced0da;
+  border-radius: 5px;
+  margin-right: 45px;
+}
+
+.news .head ul li {
+  width: 36px;
+  height: 100%;
+  text-align: center;
+  line-height: 32px;
+}
+.news .head .page {
+  margin-right: 15px;
+  line-height: 32px;
+}
+.news .head .page i {
+  font-style: normal;
+}
+
+.news .head ul li:nth-child(2) {
+  border-left: 1px solid #ced0da;
+  border-right: 1px solid #ced0da;
+}
+.news .head .next-prev {
+  margin-right: 0;
+}
+.news .head .next-prev li {
+  line-height: 28px;
+}
+.news .head .next-prev li:nth-child(2) {
+  border-right: none;
 }
