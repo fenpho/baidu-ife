@@ -3,7 +3,7 @@
 }
 
 html {
-  min-width: 1366px;
+  min-width: 1280px;
 }
 
 slide {
@@ -370,7 +370,7 @@ main .content {
 }
 
 .news {
-  width: 100%;
+  flex: 1;
 }
 
 .news .head {
@@ -538,7 +538,7 @@ main .content {
   font-size: 26px;
 }
 .news .body li.add-message input {
-  width: 100%;
+  flex: 1;
   height: 53px;
   padding-left: 15px;
   border-top-right-radius: 5px;
