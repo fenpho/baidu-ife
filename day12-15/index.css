@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+html {
+  min-width: 1366px;
+}
+
 slide {
   position: fixed;
   display: flex;
@@ -9,6 +13,7 @@ slide {
   top: 0;
   width: 350px;
   height: 100%;
+  z-index: 1000;
 }
 
 main {
@@ -47,7 +52,7 @@ main {
 .button-group .operation ul {
   display: flex;
   padding: 0 6px;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
 .button-group .operation li {
@@ -102,8 +107,28 @@ nav .content dd {
 }
 
 nav .content a {
+  position: relative;
   color: #b7c0cd;
   text-decoration: none;
+  display: block;
+}
+nav .content a i {
+  position: absolute;
+  top: 9px;
+  right: 0;
+  width: 28px;
+  height: 20px;
+  line-height: 20px;
+  font-style: normal;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 12px;
+  color: #fff;
+  background-color: #2399f2;
+}
+nav .content a i.warm {
+  width: 20px;
+  background-color: #e03d21;
 }
 
 nav .content .last-child {
@@ -117,7 +142,7 @@ nav .goal .month {
   font-size: 14px;
   margin-bottom: 13px;
   color: #fff;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
 nav .goal .progress {
@@ -227,7 +252,7 @@ main .content {
 .content .messages {
   width: 400px;
   height: 100%;
-  border-right: 1px solid #e6e9ec;
+  /* border-right: 1px solid #e6e9ec; */
 }
 
 .content .messages .search {
@@ -410,4 +435,117 @@ main .content {
 }
 .news .head .next-prev li:nth-child(2) {
   border-right: none;
+}
+.news .body {
+  border-left: 1px solid #e6e9ec;
+}
+.news .body .hide {
+  display: none;
+}
+.news .body ul {
+  padding: 30px;
+}
+
+.news .body li {
+  display: flex;
+  margin-bottom: 20px;
+}
+.news .body li img {
+  width: 46px;
+  height: 46px;
+  margin-right: 20px;
+}
+.news .body li .name {
+  font-size: 16px;
+  line-height: 28px;
+  margin-right: 20px;
+}
+.news .body li .time {
+  font-size: 14px;
+  line-height: 28px;
+  color: #7f8fa4;
+}
+.news .body li .descript {
+  font-size: 14px;
+  line-height: 20px;
+}
+.news .body .date > .time {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  background-color: #d9dde3;
+}
+.news .body .date .time .week {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: #fff;
+  padding: 0 20px;
+  font-size: 14px;
+  color: #7f8fa4;
+}
+.news .body .date .time .week.new-message {
+  color: #2399f1;
+}
+.news .body li .pic-list {
+  padding: 13px 0;
+  padding-bottom: 0;
+}
+.news .body li .pic-list li {
+  position: relative;
+  width: 156px;
+  height: 100px;
+  display: inline-block;
+  margin-right: 13px;
+  margin-bottom: 0;
+}
+.news .body li .pic-list li .mask {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.news .body li .pic-list li .mask::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: '';
+  transform: translateX(-50%) translateY(-50%);
+  background: url(images/open.png) center center no-repeat;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+}
+.news .body li .pic-list li:hover .mask {
+  display: block;
+}
+.news .body li .pic-list li img {
+  width: 100%;
+  height: 100%;
+}
+.news .body li.add-message .add {
+  width: 53px;
+  height: 53px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border: 1px solid #ced0da;
+  border-right: none;
+  background-color: #fff;
+  color: #9fa9ba;
+  font-size: 26px;
+}
+.news .body li.add-message input {
+  width: 100%;
+  height: 53px;
+  padding-left: 15px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: 1px solid #ced0da;
+  background-color: #fff;
+  color: #585d68;
+  font-size: 14px;
+  outline: none;
 }
