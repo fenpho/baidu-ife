@@ -102,17 +102,35 @@ nav .content dt a {
 }
 
 nav .content dd {
+  position: relative;
   font-size: 14px;
   line-height: 38px;
 }
 
-nav .content a {
+nav .content dd .icon {
   position: relative;
+  top: 5px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  background: url(images/book.png) left center no-repeat;
+}
+nav .content dd .icon.video {
+  background: url(images/video.png) left center no-repeat;
+}
+nav .content dd .icon.painting {
+  background: url(images/painting.png) left center no-repeat;
+}
+nav .content dd .icon.chart {
+  background: url(images/chart.png) left center no-repeat;
+}
+
+nav .content a {
   color: #b7c0cd;
   text-decoration: none;
-  display: block;
 }
-nav .content a i {
+nav .content i.info, nav .content i.warm {
   position: absolute;
   top: 9px;
   right: 0;
@@ -126,7 +144,7 @@ nav .content a i {
   color: #fff;
   background-color: #2399f2;
 }
-nav .content a i.warm {
+nav .content i.warm {
   width: 20px;
   background-color: #e03d21;
 }
