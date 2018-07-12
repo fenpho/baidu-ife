@@ -503,7 +503,10 @@ main .content {
   font-size: 14px;
   color: #7f8fa4;
 }
-.news .body .date .time .week.new-message {
+.news .body .date .time.new-message {
+  background-color: #a7d6f9;
+}
+.news .body .date .time.new-message .week {
   color: #2399f1;
 }
 .news .body li .pic-list {
