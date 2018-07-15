@@ -1,0 +1,59 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color: #333;
+}
+
+body {
+  padding: 10px;
+  line-height: 1.5;
+  font-size: 14px;
+  font-family: "Open Sans", arial, x-locale-body, sans-serif;
+}
+
+h1 {
+  height: 70px;
+  font-size: 30px;
+  line-height: 70px;
+}
+h2 {
+  height: 50px;
+  font-size: 22px;
+  line-height: 50px;
+}
+
+.horizontal-list {
+  float: left;
+  margin-right: 60px;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.keyword {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+h3 {
+  height: 26px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 30px;
+}
+
+.base-info p, .contact p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.card {
+  margin: 10px 0;
+}
