@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>IFE ECMAScript</title>
+</head>
+
+<body>
+  <input id="first-number" type="text" placeholder="第一个数字">
+  <input id="second-number" type="text" placeholder="第二个数字">
+  <button id="add-btn">加</button>
+  <button id="minus-btn">减</button>
+  <button id="times-btn">乘</button>
+  <button id="divide-btn">除</button>
+  <p id="result">运算结果</p>
+  <script>
+    document.getElementById("add-btn").onclick = () => {
+      computed('add-btn');
+    }
+    document.getElementById("minus-btn").onclick = () => {
+      computed('minus-btn');
+    }
+    document.getElementById("times-btn").onclick = () => {
+      computed('times-btn');
+    }
+    document.getElementById("divide-btn").onclick = () => {
+      computed('divide-btn');
+    }
+
+    function computed(type) {
+      try {
+        var number1 = document.getElementById("first-number").value;
+        var number2 = document.getElementById("second-number").value;
+        var result = document.getElementById("result");
+
+        if (number1 === '') {
+          throw "第一个输入框不能为空！";
+        };
+
+        number1 = Number(number1);
+
+        if (isNaN(number1)) {
+          throw "第一个输入框只能输入数字！";
+        };
+
+        if (number2 === '') {
+          throw "第二个输入框不能为空！";
+        };
+
+        number2 = Number(number2);
+
+        if (isNaN(number1) || isNaN(number2)) {
+          throw "第二个输入框只能输入数字！";
+        };
+
+        if (number2 === 0 && type === 'divide-btn') {
+          throw "零不能作除数";
+        };
+
+      } catch (err) {
+        console.log('错误：' + err);
+        result.innerHTML = '错误：' + err;
+        return false;
+      }
+
+      switch (type) {
+        case 'add-btn':
+          {
+            result.innerHTML = '运算结果 ' + (number1 + number2);
+          };
+          break;
+        case 'minus-btn':
+          {
+            result.innerHTML = '运算结果 ' + (number1 - number2);
+          };
+          break;
+        case 'times-btn':
+          {
+            result.innerHTML = '运算结果 ' + (number1 * number2);
+          };
+          break;
+        default:
+          {
+            result.innerHTML = '运算结果：' + (number1 / number2);
+          }
+      }
+    }
+  </script>
+</body>
+
+</html>
