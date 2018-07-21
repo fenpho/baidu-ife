@@ -4,17 +4,27 @@
 <head>
   <meta charset="UTF-8">
   <title>IFE ECMAScript</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <input id="first-number" type="text" placeholder="第一个数字">
-  <input id="second-number" type="text" placeholder="第二个数字">
-  <button id="add-btn">加</button>
-  <button id="minus-btn">减</button>
-  <button id="times-btn">乘</button>
-  <button id="divide-btn">除</button>
-  <p id="result">运算结果</p>
+  <section>
+    <input id="first-number" type="text" placeholder="第一个数字">
+    <input id="second-number" type="text" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
+  </section>
+  <section>
+    <input id="dec-number" type="text" placeholder="输入一个十进制非负整数">
+    <input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
+    <button id="trans-btn">转化为二进制</button>
+    <p id="result1">运算结果</p>
+  </section>
   <script>
+    // 四则运算
     document.getElementById("add-btn").onclick = () => {
       computed('add-btn');
     }
@@ -29,11 +39,11 @@
     }
 
     function computed(type) {
-      try {
-        var number1 = document.getElementById("first-number").value;
-        var number2 = document.getElementById("second-number").value;
-        var result = document.getElementById("result");
+      var number1 = document.getElementById("first-number").value;
+      var number2 = document.getElementById("second-number").value;
+      var result = document.getElementById("result");
 
+      try {
         if (number1 === '') {
           throw "第一个输入框不能为空！";
         };
@@ -58,34 +68,87 @@
           throw "零不能作除数";
         };
 
+        switch (type) {
+          case 'add-btn':
+            {
+              result.innerHTML = '运算结果 ' + (number1 + number2);
+            };
+            break;
+          case 'minus-btn':
+            {
+              result.innerHTML = '运算结果 ' + (number1 - number2);
+            };
+            break;
+          case 'times-btn':
+            {
+              result.innerHTML = '运算结果 ' + (number1 * number2);
+            };
+            break;
+          default:
+            {
+              result.innerHTML = '运算结果：' + (number1 / number2);
+            }
+        }
       } catch (err) {
         console.log('错误：' + err);
         result.innerHTML = '错误：' + err;
-        return false;
       }
 
-      switch (type) {
-        case 'add-btn':
-          {
-            result.innerHTML = '运算结果 ' + (number1 + number2);
-          };
-          break;
-        case 'minus-btn':
-          {
-            result.innerHTML = '运算结果 ' + (number1 - number2);
-          };
-          break;
-        case 'times-btn':
-          {
-            result.innerHTML = '运算结果 ' + (number1 * number2);
-          };
-          break;
-        default:
-          {
-            result.innerHTML = '运算结果：' + (number1 / number2);
+    }
+
+    // 十进制数转为二进制数
+    function dec2bin(decNumber) {
+      // 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数
+      var number3 = document.querySelector('#dec-number').value;
+      var result1 = document.querySelector('#result1');
+      var binBit = document.querySelector('#bin-bit').value;
+
+      try {
+        if (number3 === '') {
+          throw '输入不能为空！';
+        };
+
+        number3 = Number(number3);
+
+        if (isNaN(number3)) {
+          throw '只能输入数字！';
+        };
+
+        if (number3 % 1 !== 0) {
+          throw '只能输入整数！';
+        };
+
+        var bin = [];
+        for (var i = 0; number3 > 0; i++) {
+          bin.unshift(number3 % 2);
+          number3 = parseInt(number3 / 2);
+        }
+        if (binBit !== '' && isNaN(Number(binBit))) {
+          throw '第二个输入框只能输入数字！';
+        };
+
+        if (binBit !== '') {
+          var supportBit = Number(binBit) - bin.length;
+        if (supportBit >= 0) {
+          for (var i = 0; i < supportBit; i++) {
+            bin.unshift(0);
           }
+        } else {
+          result1.innerHTML = '运算结果：' + bin.join('');
+          throw '输入的位数小于运算结果位数！';
+        }
+        }
+        result1.innerHTML = '运算结果：' + bin.join('');
+      } catch (err) {
+        console.log('错误：' + err);
+        if (err !== '输入的位数小于运算结果位数！') {
+          result1.innerHTML = '错误：' + err;
+        }
       }
     }
+
+    // 实现党点击转化按钮时，将输入的十进制数字转化为二进制，并显示在result的p标签内
+    document.querySelector('#trans-btn').addEventListener('click', dec2bin);
   </script>
 </body>
 
