@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>IFE ECMAScript</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
@@ -23,6 +23,17 @@
     <button id="trans-btn">转化为二进制</button>
     <p id="result1">运算结果</p>
   </section>
+  <section>
+    <table>
+      <thead>
+        <tr>
+          <td colspan="9">九九乘法表</td>
+        </tr>
+      </thead>
+      <tbody id="times-table"></tbody>
+    </table>
+  </section>
+  
   <script>
     // 四则运算
     document.getElementById("add-btn").onclick = () => {
@@ -129,14 +140,14 @@
 
         if (binBit !== '') {
           var supportBit = Number(binBit) - bin.length;
-        if (supportBit >= 0) {
-          for (var i = 0; i < supportBit; i++) {
-            bin.unshift(0);
+          if (supportBit >= 0) {
+            for (var i = 0; i < supportBit; i++) {
+              bin.unshift(0);
+            }
+          } else {
+            result1.innerHTML = '运算结果：' + bin.join('');
+            throw '输入的位数小于运算结果位数！';
           }
-        } else {
-          result1.innerHTML = '运算结果：' + bin.join('');
-          throw '输入的位数小于运算结果位数！';
-        }
         }
         result1.innerHTML = '运算结果：' + bin.join('');
       } catch (err) {
@@ -149,6 +160,36 @@
 
     // 实现党点击转化按钮时，将输入的十进制数字转化为二进制，并显示在result的p标签内
     document.querySelector('#trans-btn').addEventListener('click', dec2bin);
+
+    // 3的小游戏
+    var arrFor3 = [];
+    for (var i = 1; i <= 100; i++) {
+      if (i.toString().includes('3') || i % 3 === 0) {
+        arrFor3.push('PA');
+      } else {
+        arrFor3.push(i);
+      }
+    }
+    console.log(arrFor3.join());
+
+    // 九九乘法表
+    // 1. console
+    var timesTable = document.querySelector('#times-table');
+
+    for (var i = 1; i <= 9; i++) {
+      var tempArr = [];
+      var timeshtml = '';
+      for (var j = 1; j <= i; j++) {
+        timeshtml += `<td>${j} x ${i} = ${i * j}</td>`
+        if ((i === 3 && j === 2) || (i === 4 && j === 2)) {
+          tempArr.push(`${j} * ${i} = ${i * j} `);
+        } else {
+          tempArr.push(`${j} * ${i} = ${i * j}`);
+        }
+      }
+      console.log(tempArr.join('     '));
+      timesTable.innerHTML += `<tr>${timeshtml}</tr>`;
+    }
   </script>
 </body>
 

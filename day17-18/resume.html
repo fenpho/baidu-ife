@@ -82,15 +82,31 @@
 
   <!-- 问候 -->
   <div class="greeting">
-    <p>欢迎您的到来，请输入您的昵称：</p>
+    <p id="great-tip"></p>
     <input id="custom-name" type="text" placeholder="张三" value="张三">
     <button id="confirm-btn">确定</button>
     <p id="do-great"></p>
   </div>
 
   <script>
+    var time = new Date().getHours();
+    var greeting = '';
+    if (time >= 6 && time <= 8) {
+      greeting = '早上好，欢迎您的到来，请输入您的昵称：';
+    } else if (time > 8 && time < 11) {
+      greeting = '上午好，欢迎您的到来，请输入您的昵称：';
+    } else if (time >= 11 && time <= 13) {
+      greeting = '中午好，欢迎您的到来，请输入您的昵称：';
+    } else if (time > 13 && time < 18) {
+      greeting = '下午好，欢迎您的到来，请输入您的昵称：';
+    } else if (time >= 18 && time <= 23) {
+      greeting = '晚上好，欢迎您的到来，请输入您的昵称：';
+    } else {
+      greeting = '夜深了，欢迎您的到来，请输入您的昵称：';
+    }
+    document.getElementById("great-tip").textContent = greeting;
     document.getElementById("confirm-btn").onclick = function () {
-      document.getElementById("do-great").innerHTML = '您好 ' + document.getElementById("custom-name").value;
+      document.getElementById("do-great").innerHTML = '您好，' + document.getElementById("custom-name").value + '！';
     }
   </script>
 </body>
