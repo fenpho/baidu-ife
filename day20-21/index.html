@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>IFE ECMAScript</title>
+  <style>
+    section {
+      margin: 50px;
+      border-bottom: 1px solid #ccc;
+      padding: 0 20px 35px;
+    }
+
+    select {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .palette {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .palette li {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #000;
+      cursor: pointer;
+    }
+
+    .erik-smile {
+      width: 480px;
+      height: 480px;
+      background: url(images/erik.jpg) no-repeat center center;
+      background-position: 0 -1px;
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <label>
+      <input id="school" name="status" type="radio"> School
+    </label>
+    <label>
+      <input id="company" name="status" type="radio"> Company
+    </label>
+
+    <select id="school-select">
+      <option>北京邮电大学</option>
+      <option>黑龙江大学</option>
+      <option>华中科技大学</option>
+    </select>
+
+    <select id="company-select">
+      <option>百度</option>
+      <option>爱奇艺</option>
+    </select>
+  </section>
+
+  <section>
+    <ul class="palette">
+      <li style="background-color:crimson"></li>
+      <li style="background-color:bisque"></li>
+      <li style="background-color:blueviolet"></li>
+      <li style="background-color:coral"></li>
+      <li style="background-color:chartreuse"></li>
+      <li style="background-color:darkolivegreen"></li>
+      <li style="background-color:cyan"></li>
+      <li style="background-color:#194738"></li>
+    </ul>
+
+    <p class="color-picker"></p>
+  </section>
+
+  <section>
+    <div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+    <button id="fade-btn">淡出</button>
+  </section>
+
+  <section>
+    <div id="erik-smile" class="erik-smile"></div>
+  </section>
+
+  <script>
+    // 1. JS控制下拉框样式，显示和隐藏
+    var school = document.querySelector('#school');
+    var company = document.querySelector('#company');
+    var schoolSelect = document.querySelector('#school-select');
+    var companySelect = document.querySelector('#company-select');
+
+    school.addEventListener('click', function () {
+      showHandle('school');
+    });
+    company.addEventListener('click', function () {
+      showHandle('company');
+    });
+
+    function showHandle(type) {
+      if (type === 'school') {
+        schoolSelect.style.display = 'block';
+        companySelect.style.display = 'none';
+      } else {
+        schoolSelect.style.display = 'none';
+        companySelect.style.display = 'block';
+      }
+    }
+
+    // 2. 点击切换颜色，事件代理
+    // 普通方式
+    // var list = document.querySelectorAll("li");
+    // for (var i = 0; i < list.length; i++) {
+    //     list[i].onclick = function(e) {
+    //         var t = e.target;
+    //         var c = t.style.backgroundColor;
+    //         var p = document.getElementsByClassName("color-picker")[0]
+    //         p.innerHTML = c;
+    //         p.style.color = c;
+
+    //     }
+    // }
+
+
+    // 事件代理方式
+    var palette = document.getElementsByClassName('palette')[0];
+
+    palette.addEventListener('click', function (event) {
+      changeColor(event);
+    });
+
+    function changeColor(event) {
+      var target = event.target;
+      var color = target.style.backgroundColor;
+      var p = document.getElementsByClassName("color-picker")[0]
+      p.innerHTML = color;
+      p.style.color = color;
+    }
+
+    // 3. 淡入淡出效果，定时器应用
+    var fadeObj = document.querySelector('#fade-obj');
+    var fadeBtn = document.querySelector('#fade-btn');
+
+    fadeBtn.addEventListener('click', function () {
+      if (this.innerHTML === '淡出') {
+        changeOpacity('minus');
+      } else {
+        changeOpacity('add');
+      }
+    });
+    // setTimeout
+    function changeOpacity(type) {
+      fadeBtn.setAttribute('disabled', 'disabled');
+      if (type === 'minus') {
+        var opacity = 1;
+        setTimeout(function fn() {
+          if (opacity > 0) {
+            setTimeout(fn, 16);
+          } else {
+            fadeBtn.textContent = '淡入';
+            fadeBtn.removeAttribute('disabled');
+            return false;
+          }
+          opacity -= 0.01;
+          fadeObj.style.opacity = opacity;
+        }, 16);
+      } else {
+        var opacity = 0;
+        setTimeout(function fn() {
+          if (opacity < 1) {
+            setTimeout(fn, 16);
+          } else {
+            fadeBtn.textContent = '淡出';
+            fadeBtn.removeAttribute('disabled');
+            return false;
+          }
+          opacity += 0.01;
+          fadeObj.style.opacity = opacity;
+        }, 16);
+      }
+    }
+    // setInterval
+    // function changeOpacity(type) {
+    //   fadeBtn.setAttribute('disabled', 'disabled');
+    //   if (type === 'minus') {
+    //     var opacity = 1;
+    //     var timer = setInterval(function () {
+    //       if (opacity <= 0) {
+    //         clearInterval(timer);
+    //         fadeBtn.textContent = '淡入';
+    //         fadeBtn.removeAttribute('disabled');
+    //         return false;
+    //       }
+    //       opacity -= 0.01;
+    //       fadeObj.style.opacity = opacity;
+    //     }, 16);
+    //   } else {
+    //     var opacity = 0;
+    //     var timer = setInterval(function () {
+    //       if (opacity >= 1) {
+    //         clearInterval(timer);
+    //         fadeBtn.textContent = '淡出';
+    //         fadeBtn.removeAttribute('disabled');
+    //         return false;
+    //       }
+    //       opacity += 0.01;
+    //       fadeObj.style.opacity = opacity;
+    //     }, 16);
+    //   }
+    // }
+
+    // 4. Erik的微笑，Sprites
+    var isSmile = false;
+    smile();
+
+    function smile() {
+      var erikSmile = document.querySelector('#erik-smile');
+      if (!isSmile) {
+        var picIndex = 0;
+        setTimeout(function fn() {
+          if (picIndex < 16) {
+            setTimeout(fn, 160);
+          } else {
+            isSmile = true;
+            smile();
+            return false;
+          }
+          picIndex++;
+          erikSmile.style.backgroundPosition = `0 ${-picIndex * 480}px`;
+        }, 160);
+      } else {
+        var picIndex = 16;
+        setTimeout(function fn() {
+          if (picIndex > 0) {
+            setTimeout(fn, 160);
+          } else {
+            isSmile = false;
+            smile();
+            return false;
+          }
+          picIndex--
+          erikSmile.style.backgroundPosition = `0 ${-picIndex * 480}px`;
+        }, 160);
+      }
+    }
+  </script>
+</body>
+
+</html>
