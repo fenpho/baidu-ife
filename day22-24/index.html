@@ -482,6 +482,7 @@
       return Number.isNaN(Number(value));
     }
 
+    // section 3
     /*
     实现一个字符串头尾去除空格的函数
     注意需要去除的空格，包括全角、半角空格
@@ -558,6 +559,156 @@
       }
       return str;
     }
+
+    // section 4
+    var tree = {
+      "id": 0,
+      "name": "root",
+      "left": {
+        "id": 1,
+        "name": "Simon",
+        "left": {
+          "id": 3,
+          "name": "Carl",
+          "left": {
+            "id": 7,
+            "name": "Lee",
+            "left": {
+              "id": 11,
+              "name": "Fate"
+            }
+          },
+          "right": {
+            "id": 8,
+            "name": "Annie",
+            "left": {
+              "id": 12,
+              "name": "Saber"
+            }
+          }
+        },
+        "right": {
+          "id": 4,
+          "name": "Tony",
+          "left": {
+            "id": 9,
+            "name": "Candy"
+          }
+        }
+      },
+      "right": {
+        "id": 2,
+        "name": "right",
+        "left": {
+          "id": 5,
+          "name": "Carl",
+        },
+        "right": {
+          "id": 6,
+          "name": "Carl",
+          "right": {
+            "id": 10,
+            "name": "Kai"
+          }
+        }
+      }
+    }
+
+    // 假设id和name均不会重复，根据输入name找到对应的id
+    function findIdByName(name) {
+
+    }
+
+    // 假设id和name均不会重复，根据输入id找到对应的name
+    function findNameById(id) {
+
+    }
+
+    // 把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
+    function getListWithDLR() {
+
+    }
+
+    // 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
+    function getListWithLDR() {
+
+    }
+
+    // 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
+    function getListWithLRD() {
+
+    }
+
+    function BinaryTree() {
+      var Node = function (key) {
+        this.key = key;
+        this.left = null;
+        this.right = null;
+      }
+
+      var root = null;
+
+      var insertNode = function (node, newNode) {
+        if (newNode.key < node.key) {
+          if (node.left === null) {
+            node.left = newNode;
+          } else {
+            insertNode(node.left, newNode);
+          }
+        } else {
+          if (node.right === null) {
+            node.right = newNode;
+          } else {
+            insertNode(node.right, newNode);
+          }
+        }
+      }
+
+      this.insert = function (key) {
+        var newNode = new Node(key);
+        if (root === null) {
+          root = newNode;
+        } else {
+          insertNode(root, newNode);
+        }
+      }
+
+      var inOrderTraverseNode = function (node, callback) {
+        if (node !== null) {
+          inOrderTraverseNode(node.left, callback);
+          callback(node.key);
+          inOrderTraverseNode(node.right, callback);
+        }
+      }
+
+      this.inOrderTraverse = function (callback) {
+        inOrderTraverseNode(root, callback);
+      }
+
+      var preOrderTraverseNode = function (node, callback) {
+        if (node !== null) {
+          callback(node.key);
+          preOrderTraverseNode(node.left, callback);
+          preOrderTraverseNode(node.right, callback);
+        }
+      }
+
+      this.preOrderTraverse = function (callback) {
+        preOrderTraverseNode(root, callback);
+      }
+    }
+
+    var nodes = [8, 3, 10, 1, 6, 14, 4, 7, 13];
+    var binaryTree = new BinaryTree();
+    nodes.forEach((key) => {
+      binaryTree.insert(key);
+    });
+
+    var callback = function (key) {
+      console.log(key);
+    }
+
+    binaryTree.preOrderTraverse(callback);
   </script>
 </body>
 
