@@ -616,27 +616,97 @@
 
     // 假设id和name均不会重复，根据输入name找到对应的id
     function findIdByName(name) {
-
+      function searchNode(node, name) {
+        if (!node) {
+          return '没有与输入的id相匹配的名字';
+        } else {
+          if (node.name === name) {
+            console.log(node.id);
+          } else {
+            searchNode(node.left, name);
+            searchNode(node.right, name);
+          }
+        }
+      }
+      searchNode(tree, name);
     }
 
     // 假设id和name均不会重复，根据输入id找到对应的name
     function findNameById(id) {
-
+      function searchNode(node, id) {
+        if (!node) {
+          return '没有与输入的id相匹配的名字';
+        } else {
+          if (node.id === id) {
+            console.log(node.name);
+          } else {
+            searchNode(node.left, id);
+            searchNode(node.right, id);
+          }
+        }
+      }
+      searchNode(tree, id);
     }
 
     // 把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
     function getListWithDLR() {
+      var callback = function (node) {
+        console.log(node.name);
+      }
 
+      function preOrderTraverse(node, callback) {
+        if (node) {
+          callback(node);
+          preOrderTraverse(node.left, callback);
+          preOrderTraverse(node.right, callback);
+        }
+      };
+      preOrderTraverse(tree, callback);
     }
 
     // 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
     function getListWithLDR() {
+      var callback = function (node) {
+        console.log(node.name);
+      }
 
+      function inOrderTraverse(node, callback) {
+        if (node) {
+          inOrderTraverse(node.left, callback);
+          callback(node);
+          inOrderTraverse(node.right, callback);
+        }
+      };
+      inOrderTraverse(tree, callback);
     }
 
     // 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
     function getListWithLRD() {
+      var callback = function (node) {
+        console.log(node.name);
+      }
 
+      function postOrderTraverse(node, callback) {
+        if (node) {
+          postOrderTraverse(node.left, callback);
+          postOrderTraverse(node.right, callback);
+          callback(node);
+        }
+      };
+      postOrderTraverse(tree, callback);
+    }
+
+    function objToArr(obj, arr) {
+      for (var x in obj) {
+        if (typeof (obj[x]) === 'object') {
+          objToArr(obj[x], arr);
+        }
+      }
+      var node = {};
+      node.name = obj['name'];
+      node.id = obj['id'];
+      arr.push(node);
+      return arr;
     }
 
     function BinaryTree() {
@@ -708,6 +778,55 @@
       this.postOrderTraverse = function (callback) {
         postOrderTraverseNode(root, callback);
       }
+
+      var minNode = function (node) {
+        if (node) {
+          while (node && node.left !== null) {
+            node = node.left;
+          }
+
+          return node.key;
+        }
+
+        return null;
+      }
+
+      this.min = function () {
+        return minNode(root);
+      }
+
+      var maxNode = function (node) {
+        if (node) {
+          while (node && node.right !== null) {
+            node = node.right;
+          }
+
+          return node.key;
+        }
+
+        return null;
+      }
+
+      this.max = function () {
+        return maxNode(root);
+      }
+
+      var searchNode = function (node, key) {
+        if (node === null) {
+          return false;
+        }
+        if (key < node.key) {
+          return searchNode(node.left, key);
+        } else if (key > node.key) {
+          return searchNode(node.right, key);
+        } else {
+          return true;
+        }
+      }
+
+      this.search = function (key) {
+        return searchNode(root, key);
+      }
     }
 
     var nodes = [8, 3, 10, 1, 6, 14, 4, 7, 13];
@@ -721,6 +840,10 @@
     }
 
     binaryTree.postOrderTraverse(callback);
+    console.log('min node is: ' + binaryTree.min());
+    console.log('max node is: ' + binaryTree.max());
+    console.log(binaryTree.search(7) ? 'key 7 is found' : 'key 7 is not found');
+    console.log(binaryTree.search(9) ? 'key 9 is found' : 'key 9 is not found');
   </script>
 </body>
 
