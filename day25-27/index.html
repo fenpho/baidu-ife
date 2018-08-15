@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <p id="clock"></p>
+  <p id="clock1"></p>
+
+  <select id="year-select"></select>
+
+  <select id="month-select"></select>
+
+  <select id="day-select"></select>
+
+  <select id="hour-select"></select>
+
+  <select id="minite-select"></select>
+
+  <select id="second-select"></select>
+
+  <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+  <script>
+    // section1 参数校验
+    function Go() {
+      console.log("Go");
+    }
+
+    function GoSteps(n) {
+      if (n === undefined) {
+        n = 1;
+      }
+      var n = Number(n);
+      if (isNaN(n)) {
+        console.log('please enter a number');
+        return false;
+      }
+      if (n < 0) {
+        n = 0;
+      }
+      n = Math.floor(n);
+      while (n--) {
+        Go();
+      }
+    }
+
+    GoSteps(10); // Go 10次
+    GoSteps(1); // Go 1次
+    GoSteps(); // Go 1次，认为缺少参数时，默认参数为1
+    GoSteps(0); // 0次
+    GoSteps(-1); // 0次
+    GoSteps(1.4); // Go 1次
+    GoSteps(1.6); // Go 1次
+    GoSteps(-1); // 0次
+    GoSteps(true); // Go 1次
+    GoSteps(false); // 0次
+    GoSteps("Test"); // 0次
+    GoSteps(NaN); // 0次
+    GoSteps(null); // 0次
+
+    // section2 日期显示
+
+    // 在页面上按照格式显示日期
+    function displayTime(id, mode) {
+      var clock = document.getElementById(id);
+
+      if (mode === 0) {
+        var date = getDate();
+        date = date[0] + ' 年 ' + date[1] + ' 月 ' + date[2] + ' 日';
+        var week = getWeek();
+        switch (week) {
+          case 0:
+            week = '星期 日';
+            break;
+          case 1:
+            week = '星期 一';
+            break;
+          case 2:
+            week = '星期 二';
+            break;
+          case 3:
+            week = '星期 三';
+            break;
+          case 4:
+            week = '星期 四';
+            break;
+          case 5:
+            week = '星期 五';
+            break;
+          case 6:
+            week = '星期 六';
+            break;
+        }
+        var time = getTime();
+        time = time.join(':');
+        clock.textContent = `${date} ${week} ${time}`;
+        setTimeout(() => {
+          displayTime(id, 0);
+        }, 1000);
+      } else {
+        var date1 = getDate().join('-');
+        var week1 = getWeek();
+        switch (week1) {
+          case 0:
+            week1 = 'Sunday';
+            break;
+          case 1:
+            week1 = 'Monday';
+            break;
+          case 2:
+            week1 = 'Tuesday';
+            break;
+          case 3:
+            week1 = 'Wednesday';
+            break;
+          case 4:
+            week1 = 'Thursday';
+            break;
+          case 5:
+            week1 = 'Friday';
+            break;
+          case 6:
+            week1 = 'Saturday';
+            break;
+        }
+        var time1 = getTime();
+        if (time1[0] > 12) {
+          time1[0] = format(time1[0] % 12);
+          time1 = time1.join(':') + ' PM';
+        } else {
+          time1 = time1.join(':') + ' AM';
+        }
+        clock.textContent = `${date1} ${week1} ${time1}`;
+        setTimeout(() => {
+          displayTime(id, 1);
+        }, 1000);
+      }
+    }
+
+    // 获取年月日
+    function getDate() {
+      var date = new Date();
+      var year = date.getFullYear().toString(); // 转化为字符串，与格式化后的数据保持类型一致
+      var month = format(date.getMonth() + 1);
+      var day = format(date.getDate());
+      var dateArr = [year, month, day];
+      return dateArr;
+    }
+
+    // 获取星期
+    function getWeek() {
+      var week = new Date().getDay();
+      return week;
+    }
+
+    // 获取时分秒
+    function getTime() {
+      var time = new Date();
+      var hour = format(time.getHours());
+      var minute = format(time.getMinutes());
+      var second = format(time.getSeconds());
+      var timeArr = [hour, minute, second];
+
+      return timeArr;
+    }
+
+    function format(time) {
+      if (time < 10) {
+        time = '0' + time;
+      }
+      return time.toString();
+    }
+    displayTime('clock', 0);
+    displayTime('clock1', 1);
+
+    // section3 time
+    var yeaeObj = document.getElementById('year-select');
+    var monthObj = document.getElementById('month-select');
+    var dayObj = document.getElementById('day-select');
+    var hourObj = document.getElementById('hour-select');
+    var miniteObj = document.getElementById('minite-select');
+    var secondObj = document.getElementById('second-select');
+    var resultWrapper = document.getElementById('result-wrapper');
+
+    function selectContent() {
+      // year
+      var yearLength = 30;
+      var yearBegin = new Date().getFullYear() - 15;
+      for (var i = 0; i < yearLength; i++) {
+        var yearDom = document.createElement('option');
+        yearDom.value = yearBegin + i;
+        yearDom.textContent = yearBegin + i;
+        yeaeObj.appendChild(yearDom);
+      }
+
+      // month
+      for (var i = 1; i < 13; i++) {
+        var monthDom = document.createElement('option');
+        monthDom.value = format(i);
+        monthDom.textContent = format(i);
+        monthObj.appendChild(monthDom);
+      }
+
+      // day
+      for (var i = 1; i <= 31; i++) {
+        var dayDom = document.createElement('option');
+        dayDom.value = format(i);
+        dayDom.textContent = format(i);
+        dayObj.appendChild(dayDom);
+      }
+
+      // hour
+      for (var i = 0; i < 24; i++) {
+        var hourDom = document.createElement('option');
+        hourDom.value = format(i);
+        hourDom.textContent = format(i);
+        hourObj.appendChild(hourDom);
+      }
+
+      // minite
+      for (var i = 0; i < 60; i++) {
+        var miniteDom = document.createElement('option');
+        miniteDom.value = format(i);
+        miniteDom.textContent = format(i);
+        miniteObj.appendChild(miniteDom);
+      }
+
+      // second
+      for (var i = 0; i < 60; i++) {
+        var secondDom = document.createElement('option');
+        secondDom.value = format(i);
+        secondDom.textContent = format(i);
+        secondObj.appendChild(secondDom);
+      }
+    }
+
+    function compareTime() {
+      var now = new Date();
+      var selectTime = new Date(parseInt(yeaeObj.value), parseInt(monthObj.value) - 1, parseInt(dayObj.value), parseInt(
+        hourObj.value), parseInt(miniteObj.value), parseInt(secondObj.value));
+      var week = selectTime.getDay();
+      switch (week) {
+        case 0:
+          week = '星期日';
+          break;
+        case 1:
+          week = '星期一';
+          break;
+        case 2:
+          week = '星期二';
+          break;
+        case 3:
+          week = '星期三';
+          break;
+        case 4:
+          week = '星期四';
+          break;
+        case 5:
+          week = '星期五';
+          break;
+        case 6:
+          week = '星期六';
+          break;
+      }
+      var dateDiff = Math.abs(now.getTime() - selectTime.getTime()); //时间差的毫秒数
+      var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000)); //计算出相差天数
+      var leave1 = dateDiff % (24 * 3600 * 1000) //计算天数后剩余的毫秒数
+      var hours = Math.floor(leave1 / (3600 * 1000)) //计算出小时数
+      //计算相差分钟数
+      var leave2 = leave1 % (3600 * 1000) //计算小时数后剩余的毫秒数
+      var minutes = Math.floor(leave2 / (60 * 1000)) //计算相差分钟数
+      //计算相差秒数
+      var leave3 = leave2 % (60 * 1000) //计算分钟数后剩余的毫秒数
+      var seconds = Math.round(leave3 / 1000)
+      if (now > selectTime) {
+        resultWrapper.textContent =
+          `现在距离 ${yeaeObj.value}年${monthObj.value}月${dayObj.value}日${week} ${hourObj.value}:${miniteObj.value}:${secondObj.value} 已经过去 ${dayDiff}天${hours}时${minutes}分${seconds}秒`;
+      } else {
+        resultWrapper.textContent =
+          `现在距离 ${yeaeObj.value}年${monthObj.value}月${dayObj.value}日${week} ${hourObj.value}:${miniteObj.value}:${secondObj.value} 还有 ${dayDiff}天${hours}时${minutes}分${seconds}秒`;
+      }
+      setTimeout(() => {
+        compareTime();
+      }, 1000);
+    }
+
+    // 初始化
+    selectContent();
+    // 比较时间
+    compareTime();
+
+
+    var monthObj = document.getElementById('month-select');
+    monthObj.addEventListener('click', function () {
+      var month = monthObj.value;
+      var dayLength = 0;
+      switch (month) {
+        case '01':
+        case '03':
+        case '05':
+        case '07':
+        case '08':
+        case '10':
+        case '12':
+          dayLength = 31;
+          break;
+        case '04':
+        case '06':
+        case '09':
+        case '11':
+          dayLength = 30;
+          break;
+        case '02':
+          if ((yeaeObj.value % 4 === 0 && yeaeObj.value % 100 !== 0) || (yeaeObj.value % 100 === 0 && yeaeObj % 400 ===
+              0)) {
+            dayLength = 29;
+          } else {
+            dayLength = 28;
+          }
+          break;
+      }
+
+      dayObj.innerHTML = '';
+      for (var i = 1; i <= dayLength; i++) {
+        var dayDom = document.createElement('option');
+        dayDom.value = format(i);
+        dayDom.textContent = format(i);
+        dayObj.appendChild(dayDom);
+      }
+    });
+  </script>
+</body>
+
+</html>
