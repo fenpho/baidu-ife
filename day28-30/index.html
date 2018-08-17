@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <input id="email-input" type="text">
+    <ul id="email-sug-wrapper" class="email-sug"></ul>
+  </div>
+
+  <script>
+    // 邮箱后缀List参考
+    var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+    var emailInput = document.getElementById('email-input');
+    var emailSugWrapper = document.getElementById('email-sug-wrapper');
+    var wrapper = document.querySelector('.wrapper');
+
+    // 聚焦
+    emailInput.focus();
+
+    function getInput() {
+      // 拿到input输入框的输入内容trim后返回
+      return emailInput.value.trim();
+    }
+
+    // function createTip(value) {
+    //   // 获取用户输入
+    //   // 遍历postfixList,把用户输入和每一个postfix进行结合成为每一个Li
+    //   var startString = value;
+    //   if (value.includes('@')) {
+    //     var startString = value.split('@')[0];
+    //     var endString = value.split('@')[1];
+    //   }
+    //   var nodeArr = [];
+    //   for (var i = 0; i < postfixList.length; i++) {
+    //     if (endString && postfixList[i].includes(endString)) {
+    //       var node = document.createElement('li');
+    //       node.dataType = 'email tip';
+    //       node.textContent = startString + '@' + postfixList[i];
+    //       nodeArr.push(node);
+    //     }
+    //   }
+    //   if (!nodeArr.length) {
+    //     for (var i = 0; i < postfixList.length; i++) {
+    //       var node = document.createElement('li');
+    //       node.dataType = 'email tip';
+    //       node.textContent = startString + '@' + postfixList[i];
+    //       nodeArr.push(node);
+    //     }
+    //   }
+    //   nodeArr[0].classList.add('selected');
+    //   // 返回生成的提示内容
+    //   return nodeArr;
+    // }
+
+    function insertTip(childNode) {
+      // 清空原有提示
+      emailSugWrapper.innerHTML = '';
+      // 获取生成提示框中的提示内容
+      // 将内容添加到email - sug - wrapper中
+      for (var i = 0; i < childNode.length; i++) {
+        emailSugWrapper.appendChild(childNode[i]);
+      }
+    }
+
+    function tipStatus() {
+      if (getInput() === '') {
+        // 隐藏提示框
+        return false;
+      } else {
+        // 显示提示框
+        return true;
+      }
+    }
+
+    function hideTip() {
+      // 做具体隐藏提示框的操作
+      emailSugWrapper.style.display = 'none';
+    }
+
+    function showTip() {
+      // 做具体显示提示框的操作
+      emailSugWrapper.style.display = 'block';
+    }
+
+    emailSugWrapper.addEventListener('click', function (event) {
+      if (event.target.dataType === 'email tip') {
+        emailInput.value = event.target.textContent;
+        hideTip();
+        emailInput.focus();
+      }
+    });
+
+
+    // 键盘控制
+    // 基于DOM的思路一代码结构
+
+    // // 重置选中状态
+    // function resetSelect() {
+    //   // 找到当前为选中状态的Li
+    //   // 当前选中状态Li不是第一个
+    //   var firstLi = emailSugWrapper.querySelector('li:first-child');
+    //   var selectedLi = emailSugWrapper.querySelector('li.selected');
+    //   if (firstLi !== selectedLi) {
+    //     // 清除掉它的选中状态
+    //     // 设置第一个Li为选中状态
+    //     selectedLi.classList.remove('selected');
+    //     firstLi.classList.add('selected');
+    //   }
+    // }
+
+    // // 监听特殊3个键的键盘事件，这个事件可能就是inputDom的输入监听，也有可能是另外一个，请自己测试后判断
+    // wrapper.onkeydown = function (event) {
+    //   if (event.keyCode !== 13 && event.keyCode !== 38 && event.keyCode !== 40) {
+    //     // 如果按键不是上下及回车重置选中状态
+    //     resetSelect();
+    //     return;
+    //   }
+    //   // 找到当前为选中状态的Li, 清除掉它的选中状态
+    //   var list = emailSugWrapper.querySelectorAll('li');
+    //   var selected = 0;
+    //   var selectedLi = null;
+    //   for (var i = 0; i < list.length; i++) {
+    //     if (list[i].getAttribute("class") === 'selected') {　
+    //       selected = i;　
+    //       selectedLi = list[i];
+    //     }
+    //   }
+    //   // 按的是上键
+    //   if (event.keyCode === 38) {
+    //     // 找到的Li不是第一个
+    //     selectedLi.classList.remove('selected');
+    //     if (selectedLi !== list[0]) {
+    //       // 将它的前一个Li设为选中
+    //       list[selected - 1].classList.add('selected');
+    //     } else {
+    //       // 将最后一个Li设为选中
+    //       list[list.length - 1].classList.add('selected');
+    //     }
+    //   }
+    //   // 按的是下键
+    //   if (event.keyCode === 40) {
+    //     selectedLi.classList.remove('selected');
+    //     // 找到的Li不是最后一个
+    //     if (selectedLi !== list[list.length - 1]) {
+    //       // 将它的下一个Li设为选中
+    //       list[selected + 1].classList.add('selected');
+    //     } else {
+    //       // 将第一个Li设为选中
+    //       list[0].classList.add('selected');
+    //     }
+    //   }
+    //   // 按的是回车
+    //   if (event.keyCode === 13) {
+    //     // 将找到的Li的HTML内容解码后填到input中
+    //     // 隐藏提示框
+    //     emailInput.value = selectedLi.textContent;
+    //     hideTip();
+    //   }
+    // }
+
+    // 基于数据的代码结构
+
+    // 增加一个变量，用于存储当前选中的提示Li的序号
+    var nowSelectTipIndex = 0;
+    var childNode = [];
+
+    emailInput.oninput = function () {
+      // 获取用户输入， 生成提示框中的提示内容， 将提示内容添加到email - sug - wrapper中
+      var value = getInput();
+      childNode = createTip(value);
+      insertTip(childNode);
+      // 控制email - sug - wrapper的显示 / 隐藏状态
+      tipStatus() ? showTip() : hideTip();
+    }
+
+    // 需要修改一下之前的“生成提示框中的提示内容()”
+    function createTip(value) {
+      // 获取用户输入
+      // 遍历postfixList,把用户输入和每一个postfix进行结合成为每一个Li
+      var startString = value;
+      if (value.includes('@')) {
+        var startString = value.split('@')[0];
+        var endString = value.split('@')[1];
+      }
+      var nodeArr = [];
+      for (var i = 0; i < postfixList.length; i++) {
+        if (endString && postfixList[i].includes(endString)) {
+          var node = document.createElement('li');
+          node.dataType = 'email tip';
+          node.textContent = startString + '@' + postfixList[i];
+          nodeArr.push(node);
+        }
+      }
+      if (!nodeArr.length) {
+        for (var i = 0; i < postfixList.length; i++) {
+          var node = document.createElement('li');
+          node.dataType = 'email tip';
+          node.textContent = startString + '@' + postfixList[i];
+          nodeArr.push(node);
+        }
+      }
+      // 新增
+      // 将第nowSelectTipIndex个Li的样式设置为被选样式
+      nodeArr[nowSelectTipIndex].classList.add('selected');
+      // 返回生成的提示内容
+      return nodeArr;
+    }
+
+    function resetSelect(nowSelectTipIndex) {
+      // 将 nowSelectTipIndex 设为0
+      nowSelectTipIndex = 0;
+      return nowSelectTipIndex;
+    }
+
+    // 监听特殊3个键的键盘事件，这个事件可能就是inputDom的输入监听，也有可能是另外一个，请自己测试后判断
+    wrapper.onkeydown = function (event) {
+      if (event.keyCode === 27) {
+        emailInput.select();
+      }
+      if (event.keyCode !== 13 && event.keyCode !== 38 && event.keyCode !== 40) {
+        // 如果按键不是上下及回车重置选中状态
+        nowSelectTipIndex = resetSelect();
+        return;
+      }
+      // 按的是上键
+      if (event.keyCode === 38) {
+        // nowSelectTipIndex等于0
+        if (nowSelectTipIndex === 0) {
+          // nowSelectTipIndex设置为当前提示框的Li的个数 - 1
+          nowSelectTipIndex = childNode.length - 1;
+        } else {
+          // nowSelectTipIndex - 1
+          nowSelectTipIndex--;
+        }
+      }
+      // 按的是下键
+      if (event.keyCode === 40) {
+        // nowSelectTipIndex等于Li的最大索引
+        if (nowSelectTipIndex === childNode.length - 1) {
+          // nowSelectTipIndex设置为 0
+          nowSelectTipIndex = 0;
+        } else {
+          // nowSelectTipIndex + 1
+          nowSelectTipIndex++;
+        }
+      }
+      // 以下三行可以封装为一个update函数，用来重新渲染页面
+      var value = getInput();
+      childNode = createTip(value);
+      insertTip(childNode);
+
+      // 按的是回车
+      if (event.keyCode === 13) {
+        // 从当前提示框中选第 nowSelectTipIndex 个Li， 将其HTML内容解码后填到input中
+        emailInput.value = childNode[nowSelectTipIndex].textContent;
+        // 隐藏提示框
+        hideTip();
+      }
+    }
+  </script>
+</body>
+
+</html>

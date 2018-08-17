@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html body {
+  padding: 50px;
+}
+
+.wrapper {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.wrapper input {
+  display: block;
+  width: 100%;
+  height: 40px;
+  outline: none;
+  box-sizing: border-box;
+  font-size: 14px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+}
+
+.wrapper ul {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-top: none;
+  box-sizing: border-box;
+  display: none;
+  color: #777;
+  font-size: 12px;
+}
+
+.wrapper ul li {
+  list-style: none;
+  height: 35px;
+  padding-left: 15px;
+  line-height: 35px;
+  cursor: pointer;
+}
+
+.wrapper ul li:hover {
+  background-color: #BFE5ED;
+}
+.wrapper ul li.selected {
+  background-color: #FDC7D2;
+}
