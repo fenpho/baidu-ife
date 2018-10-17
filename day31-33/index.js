@@ -1,6 +1,10 @@
 // 这是一种实现思路，渲染表格的方法接受数据参数，但不关注数据怎么来的
 let regionSelect = document.querySelector('#region-select');
 let tableWarpper = document.querySelector('#table-wrapper');
+let productSelect = document.querySelector('#product-select');
+
+let selectedProduct = '';
+let selectedRegion = '';
 
 // regionSelect.onchange = () => {
 //   // 渲染新的表格(根据select选项获取数据)
@@ -36,13 +40,36 @@ let tableWarpper = document.querySelector('#table-wrapper');
 
 // 这是另外一种实现思路，表单变化时通知表格进行渲染，但不关注他用什么数据渲染
 regionSelect.onchange = () => {
+  if (regionSelect.value) {
+    selectedRegion = regionSelect.value
+    selectedRegion === '请选择区域' ? selectedRegion = '' : null;
+  }
+  // 渲染新的表格
+  renderTable();
+};
+productSelect.onclick = (event) => {
+  if (event.target.nodeName.toLowerCase()  === 'label') {
+    selectedProduct = event.target.textContent;
+    selectedProduct === '全部' ? selectedProduct = '' : null;
+  }
+  // selectedProduct = this.find
   // 渲染新的表格
   renderTable();
 };
 
 getData = () => {
   // 遍历数据 向要返回的数据list中添加符合表单所选项的数据
-  let data = sourceData.filter(v => v.region === regionSelect.value);
+  let data = sourceData.filter(v => {
+    if (selectedProduct && selectedRegion) {
+      return v.region === selectedRegion && v.product === selectedProduct;
+    } else if (selectedRegion) {
+      return v.region === selectedRegion;
+    } else if (selectedProduct) {
+      return v.product === selectedProduct;
+    } else {
+      return v;
+    }
+  });
   // 返回数据
   return data;
 }
@@ -68,3 +95,5 @@ renderTable = () => {
   // 渲染表格
   tableWarpper.innerHTML += `<table border="1">${tableHeader}<tbody>${tableContent}</tbody></table>`;
 }
+
+renderTable();
