@@ -3,8 +3,8 @@ let regionSelect = document.querySelector('#region-select');
 let tableWarpper = document.querySelector('#table-wrapper');
 let productSelect = document.querySelector('#product-select');
 
-let selectedProduct = '';
-let selectedRegion = '';
+let selectedProduct = ['全选'];
+let selectedRegion = ['全选'];
 
 // regionSelect.onchange = () => {
 //   // 渲染新的表格(根据select选项获取数据)
@@ -39,20 +39,27 @@ let selectedRegion = '';
 // };
 
 // 这是另外一种实现思路，表单变化时通知表格进行渲染，但不关注他用什么数据渲染
-regionSelect.onchange = () => {
-  if (regionSelect.value) {
-    selectedRegion = regionSelect.value
-    selectedRegion === '请选择区域' ? selectedRegion = '' : null;
+regionSelect.onclick = event => {
+  if (event.target.nodeName.toLowerCase() === 'input') {
+    if (event.target.checked) {
+      selectedRegion.push(event.target.value);
+    } else {
+      selectedRegion.splice(selectedRegion.indexOf(event.target.value), 1);
+    }
   }
+  console.log('region', selectedRegion);
   // 渲染新的表格
   renderTable();
 };
-productSelect.onclick = (event) => {
-  if (event.target.nodeName.toLowerCase()  === 'label') {
-    selectedProduct = event.target.textContent;
-    selectedProduct === '全部' ? selectedProduct = '' : null;
+productSelect.onclick = event => {
+  if (event.target.nodeName.toLowerCase() === 'input') {
+    if (event.target.checked) {
+      selectedProduct.push(event.target.value);
+    } else {
+      selectedProduct.splice(selectedProduct.indexOf(event.target.value), 1);
+    }
   }
-  // selectedProduct = this.find
+  console.log('product', selectedProduct);
   // 渲染新的表格
   renderTable();
 };
@@ -72,7 +79,7 @@ getData = () => {
   });
   // 返回数据
   return data;
-}
+};
 
 renderTable = () => {
   tableWarpper.innerHTML = '';
@@ -94,6 +101,6 @@ renderTable = () => {
     .join('');
   // 渲染表格
   tableWarpper.innerHTML += `<table border="1">${tableHeader}<tbody>${tableContent}</tbody></table>`;
-}
+};
 
 renderTable();
