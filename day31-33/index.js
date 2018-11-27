@@ -44,11 +44,11 @@ checkBoxAction = (event, type) => {
     if (event.target.checked) {
       event.target.value !== '全选'
         ? changeOne(type, event, 'add')
-        : changeAll(type, 'all');
+        : changeAll(type, 'all', event);
     } else {
       event.target.value !== '全选'
         ? changeOne(type, event, 'del')
-        : changeAll(type, 'clear');
+        : changeAll(type, 'clear', event);
     }
   }
   console.log('region', selectedProduct, selectedRegion);
@@ -56,11 +56,11 @@ checkBoxAction = (event, type) => {
   renderTable();
 };
 
-changeAll = (type, operation) => {
+changeAll = (type, operation, event) => {
   if (operation === 'all') {
     if (type === 'region') {
       selectedRegion = [];
-      const inputGroup = regionSelect.querySelectorAll('input');
+      const inputGroup = regionSelect.querySelectorAll('input.select-one');
       inputGroup.forEach(v => {
         v.setAttribute('checked', 'true');
         v.checked = true;
@@ -68,7 +68,7 @@ changeAll = (type, operation) => {
       });
     } else {
       selectedProduct = [];
-      const inputGroup = productSelect.querySelectorAll('input');
+      const inputGroup = productSelect.querySelectorAll('input.select-one');
       inputGroup.forEach(v => {
         v.setAttribute('checked', 'true');
         v.checked = true;
@@ -76,6 +76,18 @@ changeAll = (type, operation) => {
       });
     }
   } else {
+    const inputGroup = regionSelect.querySelectorAll('input');
+      var isAllChecked = true;
+      for (var i = 0; i < inputGroup.length; i++) {
+        if (!inputGroup[i].checked) {
+          isAllChecked = false;
+        }
+      }
+      if (isAllChecked) {
+        const inputGroup = regionSelect.querySelector('input.select-all');
+        inputGroup.checked = true;
+      }
+    event.target.checked = true;
     if (type === 'region') {
       selectedRegion = [];
       const inputGroup = regionSelect.querySelectorAll('input');
@@ -97,14 +109,58 @@ changeAll = (type, operation) => {
 changeOne = (type, event, operation) => {
   if (operation === 'add') {
     if (type === 'region') {
+      const inputGroup = regionSelect.querySelectorAll('input.select-one');
+      var isAllChecked = true;
+      for (var i = 0; i < inputGroup.length; i++) {
+        if (!inputGroup[i].checked) {
+          isAllChecked = false;
+        }
+      }
+      if (isAllChecked) {
+        const inputGroup = regionSelect.querySelector('input.select-all');
+        inputGroup.checked = true;
+      }
       selectedRegion.push(event.target.value);
     } else {
+      const inputGroup = productSelect.querySelectorAll('input.select-one');
+      var isAllChecked = true;
+      for (var i = 0; i < inputGroup.length; i++) {
+        if (!inputGroup[i].checked) {
+          isAllChecked = false;
+        }
+      }
+      if (isAllChecked) {
+        const inputGroup = productSelect.querySelector('input.select-all');
+        inputGroup.checked = true;
+      }
       selectedProduct.push(event.target.value);
     }
   } else {
     if (type === 'region') {
+      const inputGroup = regionSelect.querySelectorAll('input.select-one');
+      var isAllChecked = true;
+      for (var i = 0; i < inputGroup.length; i++) {
+        if (!inputGroup[i].checked) {
+          isAllChecked = false;
+        }
+      }
+      if (!isAllChecked) {
+        const inputGroup = regionSelect.querySelector('input.select-all');
+        inputGroup.checked = false;
+      }
       selectedRegion.splice(selectedRegion.indexOf(event.target.value), 1);
     } else {
+      const inputGroup = productSelect.querySelectorAll('input.select-one');
+      var isAllChecked = true;
+      for (var i = 0; i < inputGroup.length; i++) {
+        if (!inputGroup[i].checked) {
+          isAllChecked = false;
+        }
+      }
+      if (!isAllChecked) {
+        const inputGroup = productSelect.querySelector('input.select-all');
+        inputGroup.checked = false;
+      }
       selectedProduct.splice(selectedProduct.indexOf(event.target.value), 1);
     }
   }
@@ -123,14 +179,14 @@ getData = () => {
     if (selectedProduct.length && selectedRegion.length) {
       return (
         selectedRegion.indexOf(v.region) !== -1 &&
-        selectedRegion.indexOf(v.product) !== -1
+        selectedProduct.indexOf(v.product) !== -1
       );
     } else if (selectedProduct.length) {
       return selectedProduct.indexOf(v.product) !== -1;
     } else if (selectedRegion.length) {
       return selectedRegion.indexOf(v.region) !== -1;
     } else {
-      return v;
+      return false;
     }
   });
   // 返回数据
