@@ -3,8 +3,8 @@ let regionSelect = document.querySelector('#region-select');
 let tableWarpper = document.querySelector('#table-wrapper');
 let productSelect = document.querySelector('#product-select');
 
-let selectedProduct = ['全选'];
-let selectedRegion = ['全选'];
+let selectedProduct = [];
+let selectedRegion = [];
 
 // regionSelect.onchange = () => {
 //   // 渲染新的表格(根据select选项获取数据)
@@ -39,40 +39,96 @@ let selectedRegion = ['全选'];
 // };
 
 // 这是另外一种实现思路，表单变化时通知表格进行渲染，但不关注他用什么数据渲染
-regionSelect.onclick = event => {
+checkBoxAction = (event, type) => {
   if (event.target.nodeName.toLowerCase() === 'input') {
     if (event.target.checked) {
-      selectedRegion.push(event.target.value);
+      event.target.value !== '全选'
+        ? changeOne(type, event, 'add')
+        : changeAll(type, 'all');
     } else {
-      selectedRegion.splice(selectedRegion.indexOf(event.target.value), 1);
+      event.target.value !== '全选'
+        ? changeOne(type, event, 'del')
+        : changeAll(type, 'clear');
     }
   }
-  console.log('region', selectedRegion);
+  console.log('region', selectedProduct, selectedRegion);
   // 渲染新的表格
   renderTable();
 };
-productSelect.onclick = event => {
-  if (event.target.nodeName.toLowerCase() === 'input') {
-    if (event.target.checked) {
+
+changeAll = (type, operation) => {
+  if (operation === 'all') {
+    if (type === 'region') {
+      selectedRegion = [];
+      const inputGroup = regionSelect.querySelectorAll('input');
+      inputGroup.forEach(v => {
+        v.setAttribute('checked', 'true');
+        v.checked = true;
+        selectedRegion.push(v.value);
+      });
+    } else {
+      selectedProduct = [];
+      const inputGroup = productSelect.querySelectorAll('input');
+      inputGroup.forEach(v => {
+        v.setAttribute('checked', 'true');
+        v.checked = true;
+        selectedProduct.push(v.value);
+      });
+    }
+  } else {
+    if (type === 'region') {
+      selectedRegion = [];
+      const inputGroup = regionSelect.querySelectorAll('input');
+      inputGroup.forEach(v => {
+        v.removeAttribute('checked');
+        v.checked = false;
+      });
+    } else {
+      selectedProduct = [];
+      const inputGroup = productSelect.querySelectorAll('input');
+      inputGroup.forEach(v => {
+        v.removeAttribute('checked');
+        v.checked = false;
+      });
+    }
+  }
+};
+
+changeOne = (type, event, operation) => {
+  if (operation === 'add') {
+    if (type === 'region') {
+      selectedRegion.push(event.target.value);
+    } else {
       selectedProduct.push(event.target.value);
+    }
+  } else {
+    if (type === 'region') {
+      selectedRegion.splice(selectedRegion.indexOf(event.target.value), 1);
     } else {
       selectedProduct.splice(selectedProduct.indexOf(event.target.value), 1);
     }
   }
-  console.log('product', selectedProduct);
-  // 渲染新的表格
-  renderTable();
+};
+
+regionSelect.onclick = event => {
+  checkBoxAction(event, 'region');
+};
+productSelect.onclick = event => {
+  checkBoxAction(event, 'product');
 };
 
 getData = () => {
   // 遍历数据 向要返回的数据list中添加符合表单所选项的数据
   let data = sourceData.filter(v => {
-    if (selectedProduct && selectedRegion) {
-      return v.region === selectedRegion && v.product === selectedProduct;
-    } else if (selectedRegion) {
-      return v.region === selectedRegion;
-    } else if (selectedProduct) {
-      return v.product === selectedProduct;
+    if (selectedProduct.length && selectedRegion.length) {
+      return (
+        selectedRegion.indexOf(v.region) !== -1 &&
+        selectedRegion.indexOf(v.product) !== -1
+      );
+    } else if (selectedProduct.length) {
+      return selectedProduct.indexOf(v.product) !== -1;
+    } else if (selectedRegion.length) {
+      return selectedRegion.indexOf(v.region) !== -1;
     } else {
       return v;
     }
