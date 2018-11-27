@@ -76,7 +76,10 @@ changeAll = (type, operation, event) => {
       });
     }
   } else {
-    const inputGroup = regionSelect.querySelectorAll('input');
+    if (type === 'region') {
+      /**待完善全选反选逻辑，单选不可取消逻辑
+       * 
+       * const inputGroup = regionSelect.querySelectorAll('input');
       var isAllChecked = true;
       for (var i = 0; i < inputGroup.length; i++) {
         if (!inputGroup[i].checked) {
@@ -84,11 +87,10 @@ changeAll = (type, operation, event) => {
         }
       }
       if (isAllChecked) {
-        const inputGroup = regionSelect.querySelector('input.select-all');
-        inputGroup.checked = true;
+        
       }
     event.target.checked = true;
-    if (type === 'region') {
+       */
       selectedRegion = [];
       const inputGroup = regionSelect.querySelectorAll('input');
       inputGroup.forEach(v => {
