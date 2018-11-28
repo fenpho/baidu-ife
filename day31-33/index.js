@@ -77,33 +77,41 @@ changeAll = (type, operation, event) => {
     }
   } else {
     if (type === 'region') {
-      /**待完善全选反选逻辑，单选不可取消逻辑
-       * 
-       * const inputGroup = regionSelect.querySelectorAll('input');
-      var isAllChecked = true;
+      const inputGroup = productSelect.querySelectorAll('input');
+      var isAllNotChecked = true;
       for (var i = 0; i < inputGroup.length; i++) {
-        if (!inputGroup[i].checked) {
-          isAllChecked = false;
+        if (inputGroup[i].checked) {
+          isAllNotChecked = false;
         }
       }
-      if (isAllChecked) {
-        
+      if (!isAllNotChecked) {
+        selectedRegion = [];
+        const inputGroup = regionSelect.querySelectorAll('input');
+        inputGroup.forEach(v => {
+          v.removeAttribute('checked');
+          v.checked = false;
+        });
+      } else {
+        event.target.checked = true;
       }
-    event.target.checked = true;
-       */
-      selectedRegion = [];
-      const inputGroup = regionSelect.querySelectorAll('input');
-      inputGroup.forEach(v => {
-        v.removeAttribute('checked');
-        v.checked = false;
-      });
     } else {
-      selectedProduct = [];
-      const inputGroup = productSelect.querySelectorAll('input');
-      inputGroup.forEach(v => {
-        v.removeAttribute('checked');
-        v.checked = false;
-      });
+      const inputGroup = regionSelect.querySelectorAll('input');
+      var isAllNotChecked = true;
+      for (var i = 0; i < inputGroup.length; i++) {
+        if (inputGroup[i].checked) {
+          isAllNotChecked = false;
+        }
+      }
+      if (!isAllNotChecked) {
+        selectedProduct = [];
+        const inputGroup = productSelect.querySelectorAll('input');
+        inputGroup.forEach(v => {
+          v.removeAttribute('checked');
+          v.checked = false;
+        });
+      } else {
+        event.target.checked = true;
+      }
     }
   }
 };
@@ -138,6 +146,17 @@ changeOne = (type, event, operation) => {
       selectedProduct.push(event.target.value);
     }
   } else {
+    const inputGroup = document.querySelectorAll('input');
+    var isAllNotChecked = true;
+    for (var i = 0; i < inputGroup.length; i++) {
+      if (inputGroup[i].checked) {
+        isAllNotChecked = false;
+      }
+    }
+    if (isAllNotChecked) {
+      event.target.checked = true;
+      return;
+    }
     if (type === 'region') {
       const inputGroup = regionSelect.querySelectorAll('input.select-one');
       var isAllChecked = true;
