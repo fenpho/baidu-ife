@@ -123,7 +123,6 @@ getData = () => {
       selectedData.toString().indexOf(v.product) !== -1 ||
       selectedData.toString().indexOf(v.region) !== -1
     ) {
-      console.log(selectedData.toString().indexOf(v.product) !== -1);
       return v;
     }
   });
