@@ -108,6 +108,7 @@ GenerateCheckBox('region-radio-wrapper', [
 
 // 获取数据
 getData = () => {
+  const data = {};
   // 遍历原始数据
   const selectedHtmlForProduct = document.querySelectorAll(
     '#product-radio-wrapper input.select-one'
@@ -128,7 +129,7 @@ getData = () => {
     }
   });
 
-  let data = sourceData.filter(v => {
+  data.data = sourceData.filter(v => {
     // 判断是否在商品维度 或者 地区维度的选中范围内 {
     // 添加到返回数据list中
     if (selectedDataForProduct.length && selectedDataForRegion.length) {
@@ -144,6 +145,9 @@ getData = () => {
       return false;
     }
   });
+
+  data.selectedDataForProduct = selectedDataForProduct;
+  data.selectedDataForRegion = selectedDataForRegion;
   // 返回数据
   return data;
 };
@@ -153,12 +157,12 @@ renderTable = () => {
 
   // 根据表单选项获取数据
   const data = getData();
-  if (!data.length) {
+  if (!data.data.length) {
     return;
   }
 
   let tableHeader = `<thead><tr><th>商品</th><th>地区</th><th>1月</th><th>2月</th><th>3月</th><th>4月</th><th>5月</th><th>6月</th><th>7月</th><th>8月</th><th>9月</th><th>10月</th><th>11月</th><th>12月</th></tr></thead>`;
-  let tableContent = data
+  let tableContent = data.data
     .map(
       v =>
         `<tr><td>${v.product}</td><td>${v.region}</td>${v.sale
