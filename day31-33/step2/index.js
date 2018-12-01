@@ -75,7 +75,7 @@ function GenerateCheckBox(id, arr) {
 
 // 对象或数组自己根据喜好实现均可
 // 生成一组CheckBox
-GenerateCheckBox('region-radio-wrapper', [
+GenerateCheckBox('product-radio-wrapper', [
   {
     value: '手机',
     text: '手机'
@@ -91,7 +91,7 @@ GenerateCheckBox('region-radio-wrapper', [
 ]);
 
 // 生成一组CheckBox
-GenerateCheckBox('product-radio-wrapper', [
+GenerateCheckBox('region-radio-wrapper', [
   {
     value: '华东',
     text: '华东'
@@ -109,21 +109,39 @@ GenerateCheckBox('product-radio-wrapper', [
 // 获取数据
 getData = () => {
   // 遍历原始数据
-  const selectedHtml = document.querySelectorAll('input.select-one');
-  const selectedData = [];
-  selectedHtml.forEach(v => {
+  const selectedHtmlForProduct = document.querySelectorAll(
+    '#product-radio-wrapper input.select-one'
+  );
+  const selectedHtmlForRegion = document.querySelectorAll(
+    '#region-radio-wrapper input.select-one'
+  );
+  const selectedDataForProduct = [];
+  const selectedDataForRegion = [];
+  selectedHtmlForProduct.forEach(v => {
     if (v.checked) {
-      selectedData.push(v.value);
+      selectedDataForProduct.push(v.value);
     }
   });
+  selectedHtmlForRegion.forEach(v => {
+    if (v.checked) {
+      selectedDataForRegion.push(v.value);
+    }
+  });
+
   let data = sourceData.filter(v => {
     // 判断是否在商品维度 或者 地区维度的选中范围内 {
     // 添加到返回数据list中
-    if (
-      selectedData.toString().indexOf(v.product) !== -1 ||
-      selectedData.toString().indexOf(v.region) !== -1
-    ) {
-      return v;
+    if (selectedDataForProduct.length && selectedDataForRegion.length) {
+      return (
+        selectedDataForProduct.toString().indexOf(v.product) !== -1 &&
+        selectedDataForRegion.toString().indexOf(v.region) !== -1
+      );
+    } else if (selectedDataForProduct.length) {
+      return selectedDataForProduct.toString().indexOf(v.product) !== -1;
+    } else if (selectedDataForRegion.length) {
+      return selectedDataForRegion.toString().indexOf(v.region) !== -1;
+    } else {
+      return false;
     }
   });
   // 返回数据
