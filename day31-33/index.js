@@ -3,8 +3,8 @@ let regionSelect = document.querySelector('#region-select');
 let tableWarpper = document.querySelector('#table-wrapper');
 let productSelect = document.querySelector('#product-select');
 
-let selectedProduct = ['全选'];
-let selectedRegion = ['全选'];
+let selectedProduct = [];
+let selectedRegion = [];
 
 // regionSelect.onchange = () => {
 //   // 渲染新的表格(根据select选项获取数据)
@@ -39,37 +39,175 @@ let selectedRegion = ['全选'];
 // };
 
 // 这是另外一种实现思路，表单变化时通知表格进行渲染，但不关注他用什么数据渲染
-regionSelect.onclick = event => handleCheckBoxClick(event, selectedRegion);
-productSelect.onclick = event => handleCheckBoxClick(event, selectedProduct);
-
-function handleCheckBoxClick(event, selected) {
+checkBoxAction = (event, type) => {
   if (event.target.nodeName.toLowerCase() === 'input') {
     if (event.target.checked) {
-      selected.push(event.target.value);
+      event.target.value !== '全选'
+        ? changeOne(type, event, 'add')
+        : changeAll(type, 'all', event);
     } else {
-      selected.splice(selected.indexOf(event.target.value), 1);
+      event.target.value !== '全选'
+        ? changeOne(type, event, 'del')
+        : changeAll(type, 'clear', event);
     }
   }
-  console.log(`${selected}`, selected);
+  console.log('region', selectedProduct, selectedRegion);
   // 渲染新的表格
   renderTable();
-}
+};
+
+changeAll = (type, operation, event) => {
+  if (operation === 'all') {
+    if (type === 'region') {
+      selectedRegion = [];
+      const inputGroup = regionSelect.querySelectorAll('input.select-one');
+      inputGroup.forEach(v => {
+        v.setAttribute('checked', 'true');
+        v.checked = true;
+        selectedRegion.push(v.value);
+      });
+    } else {
+      selectedProduct = [];
+      const inputGroup = productSelect.querySelectorAll('input.select-one');
+      inputGroup.forEach(v => {
+        v.setAttribute('checked', 'true');
+        v.checked = true;
+        selectedProduct.push(v.value);
+      });
+    }
+  } else {
+    if (type === 'region') {
+      const inputGroup = productSelect.querySelectorAll('input');
+      var isAllNotChecked = true;
+      for (var i = 0; i < inputGroup.length; i++) {
+        if (inputGroup[i].checked) {
+          isAllNotChecked = false;
+        }
+      }
+      if (!isAllNotChecked) {
+        selectedRegion = [];
+        const inputGroup = regionSelect.querySelectorAll('input');
+        inputGroup.forEach(v => {
+          v.removeAttribute('checked');
+          v.checked = false;
+        });
+      } else {
+        event.target.checked = true;
+      }
+    } else {
+      const inputGroup = regionSelect.querySelectorAll('input');
+      var isAllNotChecked = true;
+      for (var i = 0; i < inputGroup.length; i++) {
+        if (inputGroup[i].checked) {
+          isAllNotChecked = false;
+        }
+      }
+      if (!isAllNotChecked) {
+        selectedProduct = [];
+        const inputGroup = productSelect.querySelectorAll('input');
+        inputGroup.forEach(v => {
+          v.removeAttribute('checked');
+          v.checked = false;
+        });
+      } else {
+        event.target.checked = true;
+      }
+    }
+  }
+};
+
+changeOne = (type, event, operation) => {
+  if (operation === 'add') {
+    if (type === 'region') {
+      const inputGroup = regionSelect.querySelectorAll('input.select-one');
+      var isAllChecked = true;
+      for (var i = 0; i < inputGroup.length; i++) {
+        if (!inputGroup[i].checked) {
+          isAllChecked = false;
+        }
+      }
+      if (isAllChecked) {
+        const inputGroup = regionSelect.querySelector('input.select-all');
+        inputGroup.checked = true;
+      }
+      selectedRegion.push(event.target.value);
+    } else {
+      const inputGroup = productSelect.querySelectorAll('input.select-one');
+      var isAllChecked = true;
+      for (var i = 0; i < inputGroup.length; i++) {
+        if (!inputGroup[i].checked) {
+          isAllChecked = false;
+        }
+      }
+      if (isAllChecked) {
+        const inputGroup = productSelect.querySelector('input.select-all');
+        inputGroup.checked = true;
+      }
+      selectedProduct.push(event.target.value);
+    }
+  } else {
+    const inputGroup = document.querySelectorAll('input');
+    var isAllNotChecked = true;
+    for (var i = 0; i < inputGroup.length; i++) {
+      if (inputGroup[i].checked) {
+        isAllNotChecked = false;
+      }
+    }
+    if (isAllNotChecked) {
+      event.target.checked = true;
+      return;
+    }
+    if (type === 'region') {
+      const inputGroup = regionSelect.querySelectorAll('input.select-one');
+      var isAllChecked = true;
+      for (var i = 0; i < inputGroup.length; i++) {
+        if (!inputGroup[i].checked) {
+          isAllChecked = false;
+        }
+      }
+      if (!isAllChecked) {
+        const inputGroup = regionSelect.querySelector('input.select-all');
+        inputGroup.checked = false;
+      }
+      selectedRegion.splice(selectedRegion.indexOf(event.target.value), 1);
+    } else {
+      const inputGroup = productSelect.querySelectorAll('input.select-one');
+      var isAllChecked = true;
+      for (var i = 0; i < inputGroup.length; i++) {
+        if (!inputGroup[i].checked) {
+          isAllChecked = false;
+        }
+      }
+      if (!isAllChecked) {
+        const inputGroup = productSelect.querySelector('input.select-all');
+        inputGroup.checked = false;
+      }
+      selectedProduct.splice(selectedProduct.indexOf(event.target.value), 1);
+    }
+  }
+};
+
+regionSelect.onclick = event => {
+  checkBoxAction(event, 'region');
+};
+productSelect.onclick = event => {
+  checkBoxAction(event, 'product');
+};
 
 getData = () => {
   // 遍历数据 向要返回的数据list中添加符合表单所选项的数据
   let data = sourceData.filter(v => {
-    if (selectedProduct.length > 1 && selectedRegion.length > 1) {
-      return v.region === selectedRegion && v.product === selectedProduct;
-    } else if (selectedRegion.length > 1) {
-      return v.region === selectedRegion;
-    } else if (selectedProduct.length > 1) {
-      for (let i = 0; i < selectedProduct.length; i++) {
-        if (selectedProduct[i] === v.product) {
-          return v.product;
-        }
-      }
+    if (selectedProduct.length && selectedRegion.length) {
+      return (
+        selectedRegion.indexOf(v.region) !== -1 &&
+        selectedProduct.indexOf(v.product) !== -1
+      );
+    } else if (selectedProduct.length) {
+      return selectedProduct.indexOf(v.product) !== -1;
+    } else if (selectedRegion.length) {
+      return selectedRegion.indexOf(v.region) !== -1;
     } else {
-      return v;
+      return false;
     }
   });
   // 返回数据
