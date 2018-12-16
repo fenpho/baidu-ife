@@ -39,40 +39,35 @@ let selectedRegion = ['全选'];
 // };
 
 // 这是另外一种实现思路，表单变化时通知表格进行渲染，但不关注他用什么数据渲染
-regionSelect.onclick = event => {
+regionSelect.onclick = event => handleCheckBoxClick(event, selectedRegion);
+productSelect.onclick = event => handleCheckBoxClick(event, selectedProduct);
+
+function handleCheckBoxClick(event, selected) {
   if (event.target.nodeName.toLowerCase() === 'input') {
     if (event.target.checked) {
-      selectedRegion.push(event.target.value);
+      selected.push(event.target.value);
     } else {
-      selectedRegion.splice(selectedRegion.indexOf(event.target.value), 1);
+      selected.splice(selected.indexOf(event.target.value), 1);
     }
   }
-  console.log('region', selectedRegion);
+  console.log(`${selected}`, selected);
   // 渲染新的表格
   renderTable();
-};
-productSelect.onclick = event => {
-  if (event.target.nodeName.toLowerCase() === 'input') {
-    if (event.target.checked) {
-      selectedProduct.push(event.target.value);
-    } else {
-      selectedProduct.splice(selectedProduct.indexOf(event.target.value), 1);
-    }
-  }
-  console.log('product', selectedProduct);
-  // 渲染新的表格
-  renderTable();
-};
+}
 
 getData = () => {
   // 遍历数据 向要返回的数据list中添加符合表单所选项的数据
   let data = sourceData.filter(v => {
-    if (selectedProduct && selectedRegion) {
+    if (selectedProduct.length > 1 && selectedRegion.length > 1) {
       return v.region === selectedRegion && v.product === selectedProduct;
-    } else if (selectedRegion) {
+    } else if (selectedRegion.length > 1) {
       return v.region === selectedRegion;
-    } else if (selectedProduct) {
-      return v.product === selectedProduct;
+    } else if (selectedProduct.length > 1) {
+      for (let i = 0; i < selectedProduct.length; i++) {
+        if (selectedProduct[i] === v.product) {
+          return v.product;
+        }
+      }
     } else {
       return v;
     }
